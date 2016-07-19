@@ -17,6 +17,35 @@ pip2.7 install numpy
 pip2.7 install matplotlib
 pip2.7 install nltk
 
+# install build tools
+sudo yum install make automake gcc gcc-c++ kernel-devel git-core -y
+
+# install python 2.7 and change default python symlink
+sudo yum install python27-devel -y
+sudo rm /usr/bin/python
+sudo ln -s /usr/bin/python2.7 /usr/bin/python
+
+# yum still needs 2.6, so write it in and backup script
+sudo cp /usr/bin/yum /usr/bin/_yum_before_27
+sudo sed -i s/python/python2.6/g /usr/bin/yum
+sudo sed -i s/python2.6/python2.6/g /usr/bin/yum
+
+# some handy stuff
+yum install unixODBC-devel
+yum install gcc-gfortran
+yum install gcc-c++
+yum install readline-devel
+yum install libpng-devel libX11-devel libXt-devel
+yum install texinfo-tex
+yum install tetex-dvips
+yum install docbook-utils-pdf
+yum install cairo-devel
+yum install java-1.6.0-openjdk-devel
+yum install libxml2-devel
+yum install mysql
+yum install mysql-server
+yum install mysql-devel
+
 # EBS volume is mounted at /vol0, not enough room on root drive for NLTK data
 mkdir /vol0/nltk_data
 python27 -m nltk.downloader -d /vol0/nltk_data/ all

@@ -9,11 +9,12 @@ import cPickle as pickle
 import re
 import time
 import csv
+from unidecode import unidecode
 
 def get_all_titles():
     """ returns all the movie names from boxofficemojo.com in a list"""
     # The following imports the list of box office mojo URLs
-    list_urls = pd.read_csv('../get_movie_information/summary.txt', header = None, sep='\t')
+    list_urls = pd.read_csv('get_movie_information/summary.txt', header = None, sep='\t')
 
     # Set index to urls
     index = list_urls.values.T.tolist()
@@ -45,6 +46,7 @@ def get_all_titles():
         except Exception, e:
             print link
             dead_links.append(link)
+            time.sleep(0.15)
             logging.exception(e)
 
     titles_list = [unidecode(title) for title in titles_list]
