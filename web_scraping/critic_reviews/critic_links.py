@@ -38,7 +38,7 @@ def get_all_titles():
 
             # Split title into name and year
             titles_list.append(title[:-6])
-            title_year.append(title[:-6] + ", " + title[-6:].strip("()"))
+            title_year.append(title)
             movie_year.append(title[-6:].strip("()"))
             time.sleep(0.15)
 
@@ -46,6 +46,10 @@ def get_all_titles():
             print link
             dead_links.append(link)
             logging.exception(e)
+
+    titles_list = [unidecode(title) for title in titles_list]
+    title_year = [unidecode(title_year) for title_year in title_year]
+    movie_year = [unidecode(title) for movie_year in movie_year]
 
     return titles_list, title_year, movie_year, dead_links
 
@@ -63,3 +67,4 @@ if __name__ == '__main__':
 
 
 # seperate timeouts on aws, compartmentalize code, distributed scraping
+# np.savetxt("titles_list.csv", test, delimiter=",", fmt='%s')
