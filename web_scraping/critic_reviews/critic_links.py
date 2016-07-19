@@ -8,6 +8,7 @@ import string
 import cPickle as pickle
 import re
 import time
+import csv
 
 def get_all_titles():
     """ returns all the movie names from boxofficemojo.com in a list"""
@@ -39,19 +40,26 @@ def get_all_titles():
             titles_list.append(title[:-6])
             title_year.append(title[:-6] + ", " + title[-6:].strip("()"))
             movie_year.append(title[-6:].strip("()"))
-            time.sleep(0.2)
+            time.sleep(0.15)
 
         except Exception, e:
             print link
             dead_links.append(link)
             logging.exception(e)
 
-    return titles_list, title_year, movie_year
+    return titles_list, title_year, movie_year, dead_links
 
 # def critic_review_links():
 #
 
 if __name__ == '__main__':
-    titles_list, title_year, movie_year = get_all_titles()
+    titles_list, title_year, movie_year, dead_links = get_all_titles()
 
-# seperate timeouts on aws, compartmentalize code
+    # Save lists to csv files
+    np.savetxt("titles_list.csv", titles_list, delimiter=",", fmt='%s')
+    np.savetxt("title_year.csv", title_year, delimiter=",", fmt='%s')
+    np.savetxt("movie_year.csv", movie_year, delimiter=",", fmt='%s')
+    np.savetxt("dead_links.csv", dead_links, delimiter=",", fmt='%s')
+
+
+# seperate timeouts on aws, compartmentalize code, distributed scraping
