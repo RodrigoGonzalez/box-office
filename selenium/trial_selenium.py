@@ -25,7 +25,7 @@ browser.get(url)
 
 # Clear the search field, and input the search term
 browser.find_element_by_id('search-term').clear()
-browser.find_element_by_id('search-term').send_keys('Gladiator')
+browser.find_element_by_id('search-term').send_keys('13B')
 
 # Click search
 browser.find_element_by_xpath('//*[@id="header_brand_column"]/div[1]/form/div/div/div[1]/button').click()
@@ -54,7 +54,13 @@ dyn_frame3 = browser.find_elements_by_xpath('//*[contains(@rel, "nofollow")]')
 
 
 for link in dyn_frame3:
-    print link.get_attribute('href')
+    print unicode(link.get_attribute('href'))
 
-//*[@id="reviews"]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[2]/a
-//*[@id="reviews"]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/a
+# look at critic names later
+# dyn_frame4 = browser.find_elements_by_xpath('//*[contains(@class, "row review_table_row")]')
+#
+# for row in dyn_frame4:
+#     print row.find_elements_by_xpath
+#
+# //*[@id="reviews"]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[2]/a
+# //*[@id="reviews"]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/a
