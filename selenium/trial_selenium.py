@@ -3,17 +3,32 @@ import pandas as pd
 import numpy as np
 import urllib2
 from bs4 import BeautifulSoup
-import logging
-logging.basicConfig(level=logging.DEBUG)
+# import logging
+# logging.basicConfig(level=logging.DEBUG)
 import string
 import cPickle as pickle
+from fake_useragent import UserAgent
+from pyvirtualdisplay import Display
 
+# Use PhantomJS and set window
+# driver = webdriver.PhantomJS()
+# driver.set_window_size(1120, 550)
+# Run initially to keep display from opening up
+display = Display(visible=0, size=(1920, 1080))
+display.start()
 
 # Google Chrome to scrape
 path_to_chromedriver = '/Users/rodrigogonzalez/Dropbox/Galvanize/box-office/selenium/chromedriver'
 
+# Set option for chromebrowser
+chrome_options = webdriver.ChromeOptions()
+prefs = {"profile.managed_default_content_settings.images":2}
+chrome_options.add_experimental_option("prefs",prefs)
+chrome_options.add_argument("user-agent={}".format(UserAgent().random))
+
+
 # change path as needed to where web driver lives
-browser = webdriver.Chrome(executable_path = path_to_chromedriver)
+browser = webdriver.Chrome(executable_path = path_to_chromedriver, chrome_options=chrome_options)
 
 # Go to page
 url = 'https://www.rottentomatoes.com/'
@@ -25,7 +40,7 @@ browser.get(url)
 
 # Clear the search field, and input the search term
 browser.find_element_by_id('search-term').clear()
-browser.find_element_by_id('search-term').send_keys('13B')
+browser.find_element_by_id('search-term').send_keys('le fabuleaux destine de amelie poulin')
 
 # Click search
 browser.find_element_by_xpath('//*[@id="header_brand_column"]/div[1]/form/div/div/div[1]/button').click()
