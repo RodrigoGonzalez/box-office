@@ -72,10 +72,3 @@ for link in dyn_frame3:
     print unicode(link.get_attribute('href'))
 
 # look at critic names later
-# dyn_frame4 = browser.find_elements_by_xpath('//*[contains(@class, "row review_table_row")]')
-#
-# for row in dyn_frame4:
-#     print row.find_elements_by_xpath
-#
-# //*[@id="reviews"]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[2]/a
-# //*[@id="reviews"]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/div[2]/a
