@@ -18,7 +18,7 @@ from pyvirtualdisplay import Display
 display = Display(visible=0, size=(1920, 1080))
 display.start()
 
-# Google Chrome to scrape
+# Google Chrome to scrape (on aws linux chromedriver at /usr/local/bin/chromedriver)
 path_to_chromedriver = '/Users/rodrigogonzalez/Dropbox/Galvanize/box-office/selenium/chromedriver'
 
 # Set option for chromebrowser
