@@ -14,6 +14,7 @@ from pyvirtualdisplay import Display
 # driver = webdriver.PhantomJS()
 # driver.set_window_size(1120, 550)
 # Run initially to keep display from opening up
+
 display = Display(visible=0, size=(1920, 1080))
 display.start()
 
@@ -48,7 +49,6 @@ browser.find_element_by_xpath('//*[@id="header_brand_column"]/div[1]/form/div/di
 # First Link
 # //*[@id="movie_results_ul"]/li[1]/div/div/a
 # or //*[@id="movie_results_ul"]/li/div/div/a
-
 # Figure out how to use contains term
 # dyn_frame = browser.find_element_by_xpath('//*[contains(@id, "movie_results_ul")]')
 
@@ -72,3 +72,6 @@ for link in dyn_frame3:
     print unicode(link.get_attribute('href'))
 
 # look at critic names later
+
+if __name__ == '__main__':
+    main()
