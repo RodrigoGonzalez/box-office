@@ -42,7 +42,6 @@ def get_revenue_table(file):
         production_budget_pre2 = "".join(production_budget_pre1.lower().split())
         for word, initial in {"million":"000000", "thousand":"000" }.items():
             production_budget = production_budget_pre2.replace(word.lower(), initial)
-        print production_budget
 
         # Extract revenue figures
         java_text = soup.find_all(type="text/javascript")
@@ -62,28 +61,37 @@ def get_revenue_table(file):
         rev_cf = (total_revenues / base_revenues) / 1000000
 
         # Load onto dictionary to export
-        keys = ['title1', 'title2', 'total_revenues', 'distributor', 'dt_obj', 'genre', 'runtime', 'MPAA', 'production_budget', 'revenues', 'rev_cf']
+        keys = ['title1', 'title2', 'total_revenues', 'distributor', 'dt_obj', 'genre', 'runtime', 'MPAA', 'production_budget']
 
-        values = [title1, title2, total_revenues, distributor, dt_obj, genre, runtime, MPAA, production_budget, rev * rev_cf, rev_cf]
+        values = [title1, unidecode(title2), total_revenues, distributor, dt_obj, genre, runtime, MPAA, int(production_budget)]
 
         movie_details = dict(zip(keys, values))
+
+        rev_df = rev * rev_cf
 
     except Exception, e:
         print file
         movie_details = {'title1': title1}
+        rev_df = 0
         missing_information.append(file)
         logging.exception(e)
 
-    return movie_details
+    return movie_details, rev_df
 
-def populate_postgres(link, df):
-    d = get_revenue_table(link)
+
+
+def populate_dataframe(file, df):
+    d, rev_df = get_revenue_table(file)
     if len(d) > 1:
         pass
         df.append(df2, ignore_index=True)
     else:
         missing_information.append(d['title1'])
 
+    return df
+
+def load_df():
+    pass
 
 if __name__ == '__main__':
     # dead link example
@@ -91,7 +99,7 @@ if __name__ == '__main__':
     missing_information = []
 
     link = "index.html?page=daily&view=chart&id=gladiator.htm&adjust_yr=2016&p=.htm"
-    d = get_revenue_table(link)
+    d, rev_df = get_revenue_table(link)
 
     # Connect to S3
     # access_key, access_secret_key = os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY')
