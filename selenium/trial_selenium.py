@@ -9,6 +9,8 @@ import string
 import cPickle as pickle
 from fake_useragent import UserAgent
 from pyvirtualdisplay import Display
+from unidecode import unidecode
+
 
 # Use PhantomJS and set window
 # driver = webdriver.PhantomJS()
@@ -41,7 +43,7 @@ browser.get(url)
 
 # Clear the search field, and input the search term
 browser.find_element_by_id('search-term').clear()
-browser.find_element_by_id('search-term').send_keys('le fabuleaux destine de amelie poulin')
+browser.find_element_by_id('search-term').send_keys('Captain America: Civil War')
 
 # Click search
 browser.find_element_by_xpath('//*[@id="header_brand_column"]/div[1]/form/div/div/div[1]/button').click()
@@ -67,11 +69,14 @@ dyn_frame2 = browser.find_element_by_xpath('//*[@id="criticHeaders"]/a[2]').clic
 
 dyn_frame3 = browser.find_elements_by_xpath('//*[contains(@rel, "nofollow")]')
 
+links = []
 
 for link in dyn_frame3:
-    print unicode(link.get_attribute('href'))
+    links.append(unidecode(link.get_attribute('href')))
+    print unidecode(link.get_attribute('href'))
 
+pd.DataFrame(links).to_csv('critic_links.txt', sep='\t', index=False)
 # look at critic names later
 
 if __name__ == '__main__':
-    main()
+    pass
