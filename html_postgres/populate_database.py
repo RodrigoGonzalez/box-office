@@ -78,20 +78,34 @@ def get_revenue_table(file):
 
     return movie_details, rev_df
 
+def franchises():
+    pass
 
+def load_df(d, rev_df):
+    df2 = pd.DataFrame(d, index=[1,])
+    ts = df2['dt_obj'][1]
+
+    season = {1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 2, 7: 3, 8: 3, 9: 3, 10: 4, 11: 4, 12: 4}
+
+    columns = ['year', 'month', 'day', 'season']
+    column_vals = [ts.year, ts.month, ts.day, season[ts.month]]
+    date_data = pd.DataFrame(dict(zip(columns, column_vals)), index=[1,])
+    df2.join(date_data)
+
+
+    return df2
 
 def populate_dataframe(file, df):
     d, rev_df = get_revenue_table(file)
     if len(d) > 1:
         pass
+        df2 = load_df(d, rev_df)
         df.append(df2, ignore_index=True)
     else:
         missing_information.append(d['title1'])
 
     return df
 
-def load_df():
-    pass
 
 if __name__ == '__main__':
     # dead link example
