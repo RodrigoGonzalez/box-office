@@ -20,11 +20,8 @@ from unidecode import unidecode
 display = Display(visible=0, size=(1920, 1080))
 display.start()
 
-# Google Chrome to scrape (on aws linux chromedriver at path_to_chromedriver = '/usr/local/bin/chromedriver')
-# To install google chrome on linux
-# https://www.linkedin.com/pulse/using-yum-install-google-chrome-aws-linux-ami-konstantinos-demiris
-
-path_to_chromedriver = '/Users/rodrigogonzalez/Dropbox/Galvanize/box-office/selenium/chromedriver'
+# Google Chrome to scrape (on aws linux chromedriver at
+path_to_chromedriver = '/usr/local/bin/chromedriver'
 
 # Set option for chromebrowser
 chrome_options = webdriver.ChromeOptions()
