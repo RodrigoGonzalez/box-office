@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import urllib2
 from bs4 import BeautifulSoup
-# import logging
-# logging.basicConfig(level=logging.DEBUG)
+import logging
+logging.basicConfig(level=logging.DEBUG)
 import string
 import cPickle as pickle
 from fake_useragent import UserAgent
@@ -79,7 +79,8 @@ def extract_links(movie_name):
             links.append(unidecode(link.get_attribute('href')))
             print unidecode(link.get_attribute('href'))
 
-        pd.DataFrame(links).to_csv('../critic_links/'+  +'.txt', sep='\t', index=False)
+        filename = "".join(movie_name.lower().split())
+        pd.DataFrame(links).to_csv('../critic_links/'+ filename +'.txt', sep='\t', index=False)
 
     except Exception, e:
         empty_keys.append(movie_name)
