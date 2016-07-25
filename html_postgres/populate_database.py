@@ -20,9 +20,9 @@ import boto
 
 
 def get_revenue_table(file):
-    f = codecs.open(file, 'r',"utf-8")
-    soup = BeautifulSoup(f, "html5lib")
     try:
+        f = codecs.open(file, 'r',"utf-8")
+        soup = BeautifulSoup(f, "html5lib")
         # Extract movie info from main block
         title1 = unidecode(soup.title.get_text().replace(" - Daily Box Office Results - Box Office Mojo", ""))
         title2 = soup.body.find(id="container").find(id="main").find(id="body").select("table")[2].tbody.tr.td.select("table")[0].tbody.tr.select('td')[1].b.get_text()
@@ -71,7 +71,7 @@ def get_revenue_table(file):
 
     except Exception, e:
         print file
-        movie_details = {'title1': title1}
+        movie_details = {'title1': 0}
         rev_df = 0
         missing_information.append(file)
         logging.exception(e)
@@ -86,12 +86,19 @@ def load_df(d, rev_df):
     ts = df2['dt_obj'][1]
 
     season = {1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 2, 7: 3, 8: 3, 9: 3, 10: 4, 11: 4, 12: 4}
+    # Calculate if sleeper
+    week1_rev = rev_df[:7].sum().get_values()[0]
+    week2_rev = rev_df[7:14].sum().get_values()[0]
 
-    columns = ['year', 'month', 'day', 'season']
-    column_vals = [ts.year, ts.month, ts.day, season[ts.month]]
+    if week1_rev > week2_rev:
+        sleeper = 0
+    else:
+        sleeper = 1
+
+    columns = ['year', 'month', 'day', 'season', 'sleeper']
+    column_vals = [ts.year, ts.month, ts.day, season[ts.month], sleeper]
     date_data = pd.DataFrame(dict(zip(columns, column_vals)), index=[1,])
-    df2.join(date_data)
-
+    df2 = df2.join(date_data)
 
     return df2
 
@@ -100,7 +107,7 @@ def populate_dataframe(file, df):
     if len(d) > 1:
         pass
         df2 = load_df(d, rev_df)
-        df.append(df2, ignore_index=True)
+        df = df.append(df2, ignore_index=True)
     else:
         missing_information.append(d['title1'])
 
@@ -111,9 +118,14 @@ if __name__ == '__main__':
     # dead link example
     # link = "index.html?page=daily&view=chart&id=1dwhereweare.htm&adjust_yr=2016&p=.htm"
     missing_information = []
+    df = pd.DataFrame()
+    path = '../../FinalProject/boxoffice_results'
 
-    link = "index.html?page=daily&view=chart&id=gladiator.htm&adjust_yr=2016&p=.htm"
-    d, rev_df = get_revenue_table(link)
+    for filename in os.listdir(path):
+        file = path + "/" + filename
+        df = populate_dataframe(file, df)
+
+    df.to_csv('movie_revs.csv')
 
     # Connect to S3
     # access_key, access_secret_key = os.getenv('AWS_ACCESS_KEY_ID'), os.getenv('AWS_SECRET_ACCESS_KEY')
