@@ -13,6 +13,7 @@ from unidecode import unidecode
 from xvfbwrapper import Xvfb
 import selenium.webdriver.support.ui as ui
 from selenium.webdriver.common.keys import Keys
+import sys, getopt
 
 # vdisplay = Xvfb
 # vdisplay.start()
@@ -32,6 +33,7 @@ def extract_links(movie_name):
     prefs = {"profile.managed_default_content_settings.images":2}
     chrome_options.add_experimental_option("prefs",prefs)
     chrome_options.add_argument("user-agent={}".format(UserAgent().random))
+    chrome_options.add_argument("--disable-bundled-ppapi-flash");
 
 
     # change path as needed to where web driver lives
@@ -61,13 +63,13 @@ def extract_links(movie_name):
         # Find the first search result (default)
 
 
-        dyn_frame = browser.find_element_by_xpath('//*[@id="movie_results_ul"]/li/div/div/a')
-
-        linkname = dyn_frame.get_attribute('href')
-
-        # Go to the movie URL
-        browser.get(linkname)
-        dyn_frame2 = browser.find_element_by_xpath('//*[@id="criticHeaders"]/a[2]').click()
+        # dyn_frame = browser.find_element_by_xpath('//*[@id="movie_results_ul"]/li/div/div/a')
+        #
+        # linkname = dyn_frame.get_attribute('href')
+        #
+        # # Go to the movie URL
+        # browser.get(linkname)
+        # dyn_frame2 = browser.find_element_by_xpath('//*[@id="criticHeaders"]/a[2]').click()
 
         # Get all reviews links in id = "content"
 
@@ -90,8 +92,13 @@ def extract_links(movie_name):
 
 if __name__ == '__main__':
     empty_keys = []
-    df = pd.read_csv('../html_postgres/movie_revs.csv')
-    for title in df['title2']:
+    df = pd.read_csv('try2.csv')
+
+    n = int(sys.argv[1])
+    range1 = n * 79
+    range2 = 79 + n * 79
+
+    for title in df['0'][range1:range2]:
         extract_links(title)
         # empty_keys.append(title)
-    np.savetxt("empty_keys.csv", empty_keys, delimiter=",", fmt='%s')
+    np.savetxt("empty_keys_2_" + str(n) + ".csv", empty_keys, delimiter=",", fmt='%s')
