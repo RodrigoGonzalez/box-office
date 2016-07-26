@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import datetime
 import re
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.cross_validation import cross_val_score, train_test_split
@@ -18,17 +19,36 @@ def process_distributor(string):
     """
     return "/".join([x.strip() for x in string.split("/")])
 
-def time(release_dates):
+def process_date(string):
+    """
+    """
+    date = string.split('-')
+    date[2] = '01'
+    return '-'.join(date)
+
+def release_info(release_dates):
     """
     INPUT: TIME DATA FRAME
-    OUTPUT: CORRESPONDING FEATURES
+    OUTPUT: TIME FEATURES
     """
     df_CPI_entertainment = pd.read_csv('../data/CPI-UrbanConsumers-AdmissionMoviesTheatersConcerts.csv')
     df_CPI = pd.read_csv('../data/CPIAUCSL.csv')
     df_holidays = pd.read_csv('../data/holidays.csv')
     df_LIBOR = pd.read_csv('../data/LIBOR_1_month.csv')
     df_NASDAQ = pd.read_csv('../data/NASDAQCOM.csv')
-    
+
+    CPI = dict(zip(df_CPI['DATE'], df_CPI['CPIAUCSL']))
+    CPI_E = dict(zip(df_CPI_entertainment['DATE'], df_CPI_entertainment['CUSR0000SS62031']))
+    LIBOR = dict(zip(df_LIBOR['DATE'], df_LIBOR['USD1MTD156N']))
+    NASDAQ = dict(zip(df_NASDAQ['DATE'], df_NASDAQ['NASDAQCOM']))
+
+    df_ts = release_dates
+    df_ts['keys'] = release_dates.apply(process_date)
+    release_dates['holiday'] =
+    df_ts['CPI'] = release_dates.apply(process_date)
+    df_ts['CPI_E'] = release_dates.apply(process_date)
+    df_ts['LIBOR'] = release_dates.apply(process_date)
+    df_ts['NASDAQ'] = release_dates.apply(process_date)
 
     return df_ts
 
@@ -39,6 +59,7 @@ def load_dataframe():
     """
 
     df = pd.read_csv('../html_postgres/movie_revs.csv')
+    df = df[df['year'] > 2005].reset_index()
     df['distributor'] = df['distributor'].apply(process_distributor)
     df['genre'] = df['genre'].apply(process_genres)
 
@@ -46,12 +67,11 @@ def load_dataframe():
     distributors = df.pop('distributor').str.get_dummies(sep="/")
     distributors.drop(labels='A24', inplace=True, axis=1)
     genres = df.pop('genre').str.get_dummies(sep="/")
-    genres.drop(labels='Unknown', inplace=True, axis=1)
+    genres.drop(labels='Action', inplace=True, axis=1)
 
-    date_columns = ['month', 'day', 'year']
-    release_dates = df[date_columns]
-
-    df_ts = time(release_dates)
+    time_columns = ['dt_obj', 'year', 'month', 'day']
+    # release_dates = df[time_columns]
+    df_ts = release_info(df['time_columns'])
 
     df = df.join(distributors)
     df = df.join(genres)
