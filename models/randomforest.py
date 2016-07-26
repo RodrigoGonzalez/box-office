@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
-import datetime
+from datetime import datetime
 import re
+import yahoo_finance
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.cross_validation import cross_val_score, train_test_split
 
@@ -21,9 +22,20 @@ def process_distributor(string):
 
 def process_date(string):
     """
+    INPUT: string
+    OUTPUT:
     """
     date = string.split('-')
     date[2] = '01'
+    return '-'.join(date)
+
+def market_close(string):
+    """
+    INPUT: string
+    OUTPUT:
+    """
+    date = datetime.strptime(string, '%Y-%m-%d')
+    date.weekday()
     return '-'.join(date)
 
 def release_info(release_dates):
@@ -31,24 +43,24 @@ def release_info(release_dates):
     INPUT: TIME DATA FRAME
     OUTPUT: TIME FEATURES
     """
+    df_ts = pd.DataFrame()
+
     df_CPI_entertainment = pd.read_csv('../data/CPI-UrbanConsumers-AdmissionMoviesTheatersConcerts.csv')
     df_CPI = pd.read_csv('../data/CPIAUCSL.csv')
     df_holidays = pd.read_csv('../data/holidays.csv')
-    df_LIBOR = pd.read_csv('../data/LIBOR_1_month.csv')
-    df_NASDAQ = pd.read_csv('../data/NASDAQCOM.csv')
 
     CPI = dict(zip(df_CPI['DATE'], df_CPI['CPIAUCSL']))
     CPI_E = dict(zip(df_CPI_entertainment['DATE'], df_CPI_entertainment['CUSR0000SS62031']))
-    LIBOR = dict(zip(df_LIBOR['DATE'], df_LIBOR['USD1MTD156N']))
-    NASDAQ = dict(zip(df_NASDAQ['DATE'], df_NASDAQ['NASDAQCOM']))
 
-    df_ts = release_dates
-    df_ts['keys'] = release_dates.apply(process_date)
-    release_dates['holiday'] =
-    df_ts['CPI'] = release_dates.apply(process_date)
-    df_ts['CPI_E'] = release_dates.apply(process_date)
-    df_ts['LIBOR'] = release_dates.apply(process_date)
-    df_ts['NASDAQ'] = release_dates.apply(process_date)
+    Z = yahoo_finance.Share('^GSPC')
+    Z = yahoo_finance.Share('^IXIC')
+
+    df_ts['keys'] = release_dates['dt_obj'].apply(process_date)
+    df_ts['market_keys'] = release_dates['dt_obj'].apply(market_close)
+    df_ts['CPI'] = [CPI[x] for x in df_ts['keys']]
+    df_ts['CPI_E'] = [CPI_E[x] for x in df_ts['keys']]
+    df_ts['LIBOR'] =
+    df_ts['NASDAQ'] =
 
     return df_ts
 
@@ -59,7 +71,7 @@ def load_dataframe():
     """
 
     df = pd.read_csv('../html_postgres/movie_revs.csv')
-    df = df[df['year'] > 2005].reset_index()
+    df = df.query('year > 2005 and year < 2016').reset_index()
     df['distributor'] = df['distributor'].apply(process_distributor)
     df['genre'] = df['genre'].apply(process_genres)
 
@@ -80,7 +92,7 @@ def load_dataframe():
     columns_to_dummy = ['MPAA', 'season', 'month']
     df = pd.get_dummies(df, columns=columns_to_dummy, drop_first=True)
 
-    columns_to_drop = ['Unnamed: 0', 'day', 'title1', 'title2','dt_obj']
+    columns_to_drop = ['Unnamed: 0', 'day', 'title1', 'title2','dt_obj', 'index']
     df.drop(labels=columns_to_drop, inplace=True, axis=1)
 
     return df
