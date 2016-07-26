@@ -63,13 +63,13 @@ def extract_links(movie_name):
         # Find the first search result (default)
 
 
-        # dyn_frame = browser.find_element_by_xpath('//*[@id="movie_results_ul"]/li/div/div/a')
-        #
-        # linkname = dyn_frame.get_attribute('href')
-        #
-        # # Go to the movie URL
-        # browser.get(linkname)
-        # dyn_frame2 = browser.find_element_by_xpath('//*[@id="criticHeaders"]/a[2]').click()
+        dyn_frame = browser.find_element_by_xpath('//*[@id="movie_results_ul"]/li/div/div/a')
+
+        linkname = dyn_frame.get_attribute('href')
+
+        # Go to the movie URL
+        browser.get(linkname)
+        dyn_frame2 = browser.find_element_by_xpath('//*[@id="criticHeaders"]/a[2]').click()
 
         # Get all reviews links in id = "content"
 
