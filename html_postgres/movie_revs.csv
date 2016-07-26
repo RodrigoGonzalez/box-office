@@ -47,7 +47,7 @@
 45,R,Fox,2012-06-22,Horror Thriller,69000000,105,Abraham Lincoln: Vampire Hunter (2012),Abraham Lincoln:Vampire Hunter,40313500,22,6,2,0,2012
 46,PG-13,Universal,2006-08-18,Comedy,23000000,90,Accepted (2006),Accepted,47581000,18,8,3,0,2006
 47,R,Relativity,2012-02-24,Thriller,12000000,111,Act of Valor (2012),Act of Valor,75760000,24,2,1,0,2012
-48,R,Weinstein Company,2015-10-30,Comedy,20000000,100,Burnt (2015),Burnt,13464400,30,10,4,0,2015
+48,R,Weinstein,2015-10-30,Comedy,20000000,100,Burnt (2015),Burnt,13464400,30,10,4,0,2015
 49,R,Sony / Columbia,2002-12-06,Comedy,19000000,114,Adaptation. (2002),Adaptation.,32176700,6,12,4,0,2002
 50,PG-13,Focus Features,2013-03-22,Comedy / Drama,13000000,117,Admission (2013),Admission,19458800,22,3,1,0,2013
 51,PG-13,Paramount,2005-12-02,Sci-Fi Action,62000000,95,Aeon Flux (2005),Aeon Flux,34600300,2,12,4,0,2005
@@ -133,7 +133,7 @@
 131,PG,Buena Vista,2004-06-16,Family Adventure,110000000,120,Around the World in 80 Days (2004),Around the World in 80 Days,33170700,16,6,2,0,2004
 132,PG-13,Warner Bros.,2011-04-08,Comedy,40000000,110,Arthur (2011) (2011),Arthur (2011),36061500,8,4,2,0,2011
 133,PG,MGM /Weinstein,2006-12-29,Animation,86000000,103,Arthur and the Invisibles (2006),Arthur and the Invisibles,18872000,29,12,4,0,2006
-134,PG-13,Weinstein Company,2011-11-25,Comedy / Drama,15000000,100,The Artist (2011),The Artist,48403300,25,11,4,1,2011
+134,PG-13,Weinstein,2011-11-25,Comedy / Drama,15000000,100,The Artist (2011),The Artist,48403300,25,11,4,1,2011
 135,PG-13,Sony / Columbia,1997-12-23,Romantic Comedy,50000000,139,As Good as It Gets (1997),As Good as It Gets,271771100,23,12,4,1,1997
 136,R,Rogue Pictures,2005-01-19,Action Thriller,30000000,109,Assault on Precinct 13 (2005),Assault on Precinct 13,26825400,19,1,1,0,2005
 137,PG,Summit Entertainment,2009-10-23,Animation,65000000,94,Astro Boy (2009),Astro Boy,22034800,23,10,4,0,2009
@@ -245,7 +245,7 @@
 243,R,New Line,2001-04-06,Crime Drama,53000000,124,Blow (2001),Blow,80328800,6,4,2,0,2001
 244,PG-13,Universal,2002-08-16,Sports Drama,25000000,104,Blue Crush (2002),Blue Crush,59647500,16,8,3,0,2002
 245,PG-13,Sony / Columbia,1999-09-17,Action Comedy,65000000,94,Blue Streak (1999),Blue Streak,115642600,17,9,3,0,1999
-246,R,Weinstein Company,2010-12-29,Drama,1000000,112,Blue Valentine (2010),Blue Valentine,10593500,29,12,4,1,2010
+246,R,Weinstein,2010-12-29,Drama,1000000,112,Blue Valentine (2010),Blue Valentine,10593500,29,12,4,1,2010
 247,PG-13,Universal,2015-09-11,Horror,5000000,94,The Visit (2015),The Visit,66754900,11,9,3,0,2015
 248,R,STX Entertainment,2015-08-07,Thriller,5000000,108,The Gift (2015) (2015),The Gift (2015),45526700,7,8,3,0,2015
 249,R,Focus Features,2009-11-13,Comedy,50000000,115,Pirate Radio (2009),Pirate Radio,9036600,13,11,4,0,2009
@@ -305,7 +305,7 @@
 303,PG-13,Sony / Screen Gems,2010-11-24,Musical,55000000,100,Burlesque (2010),Burlesque,42247300,24,11,4,0,2010
 304,R,Focus Features,2008-09-12,Comedy,37000000,97,Burn After Reading (2008),Burn After Reading,72123800,12,9,3,0,2008
 305,PG-13,Warner Bros. /New Line,2013-03-15,Comedy,30000000,100,The Incredible Burt Wonderstone (2013),The Incredible Burt Wonderstone,24170100,15,3,1,0,2013
-306,PG-13,Weinstein Company,2013-08-16,Drama,30000000,132,Lee Daniels' The Butler (2013),Lee Daniels' The Butler,127079100,16,8,3,0,2013
+306,PG-13,Weinstein,2013-08-16,Drama,30000000,132,Lee Daniels' The Butler (2013),Lee Daniels' The Butler,127079100,16,8,3,0,2013
 307,R,New Line,2004-01-23,Sci-Fi Thriller,13000000,114,The Butterfly Effect (2004),The Butterfly Effect,80050600,23,1,1,0,2004
 308,R,Universal,2015-11-13,Drama,10000000,122,By the Sea (2015),By the Sea,531000,13,11,4,1,2015
 309,PG-13,Sony / Columbia,1996-06-14,Comedy,47000000,96,The Cable Guy (1996),The Cable Guy,116937000,14,6,2,0,1996
@@ -376,7 +376,7 @@
 374,PG,Sony / Columbia,2009-09-18,Animation,100000000,81,Cloudy with a Chance of Meatballs (2009),Cloudy with a Chance of Meatballs,141543800,18,9,3,0,2009
 375,PG-13,Paramount,2008-01-18,Action Horror,25000000,84,Cloverfield (2008),Cloverfield,95656800,18,1,1,0,2008
 376,PG-13,Paramount,2005-01-14,Sports Drama,30000000,134,Coach Carter (2005),Coach Carter,90036300,14,1,1,0,2005
-377,R,Weinstein Company,2012-11-30,Crime Thriller,15000000,97,Killing Them Softly (2012),Killing Them Softly,16018900,30,11,4,0,2012
+377,R,Weinstein,2012-11-30,Crime Thriller,15000000,97,Killing Them Softly (2012),Killing Them Softly,16018900,30,11,4,0,2012
 378,R,Miramax,2003-12-25,War Romance,79000000,155,Cold Mountain (2003),Cold Mountain,132321300,25,12,4,0,2003
 379,PG-13,Buena Vista,2015-10-16,Thriller,40000000,140,Bridge of Spies (2015),Bridge of Spies,71316300,16,10,4,0,2015
 380,R,DreamWorks,2004-08-06,Crime,65000000,125,Collateral (2004),Collateral,139553800,6,8,3,0,2004
@@ -384,7 +384,7 @@
 382,R,MGM,2008-08-29,Comedy,7000000,94,College (2008),College,5610000,29,8,3,0,2008
 383,PG-13,TriStar,2011-08-26,Action,40000000,107,Colombiana (2011),Colombiana,39621300,26,8,3,0,2011
 384,PG-13,Sony Classics,2003-12-25,Drama,15000000,112,The Company (2003),The Company,3157000,25,12,4,0,2003
-385,R,Weinstein Company,2011-01-21,Drama,15000000,105,The Company Men (2011),The Company Men,4848100,21,1,1,1,2011
+385,R,Weinstein,2011-01-21,Drama,15000000,105,The Company Men (2011),The Company Men,4848100,21,1,1,1,2011
 386,R,Buena Vista,1997-06-06,Action,75000000,115,Con Air (1997),Con Air,189017100,6,6,2,0,1997
 387,R,Lionsgate,2011-08-19,Action,90000000,112,Conan the Barbarian (2011) (2011),Conan the Barbarian (2011),22668900,19,8,3,0,2011
 388,PG-13,Sony / Columbia,2015-12-25,Drama,35000000,123,Concussion (2015) (2015),Concussion (2015),34302200,25,12,4,0,2015
@@ -467,7 +467,7 @@
 465,PG-13,Buena Vista,2013-11-22,Comedy,26000000,105,Delivery Man (2013),Delivery Man,31566000,22,11,4,0,2013
 466,PG-13,United Artists,2004-07-02,Music Drama,15000000,125,De-Lovely (2004),De-Lovely,18592300,2,7,3,1,2004
 467,R,Warner Bros.,2006-10-06,Crime Drama,90000000,150,The Departed (2006),The Departed,172636300,6,10,4,0,2006
-468,R,Weinstein Company,2005-11-11,Thriller,22000000,106,Derailed (2005),Derailed,48208600,11,11,4,0,2005
+468,R,Weinstein,2005-11-11,Thriller,22000000,106,Derailed (2005),Derailed,48208600,11,11,4,0,2005
 469,PG,Universal,2010-07-09,Animation,69000000,95,Despicable Me (2010),Despicable Me,279660500,9,7,3,0,2010
 470,PG,Universal,2013-07-03,Animation,76000000,98,Despicable Me 2 (2013),Despicable Me 2,402351400,3,7,3,0,2013
 471,R,Sony / Columbia,2005-08-12,Comedy,22000000,83,Deuce Bigalow: European Gigolo (2005),Deuce Bigalow:European Gigolo,29983400,12,8,3,0,2005
@@ -492,7 +492,7 @@
 490,R,TriStar,2009-08-14,Sci-Fi,30000000,113,District 9 (2009),District 9,132936000,14,8,3,0,2009
 491,PG-13,Paramount /DreamWorks,2007-04-13,Drama / Thriller,20000000,104,Disturbia (2007),Disturbia,100029000,13,4,2,0,2007
 492,PG-13,Lionsgate/Summit,2014-03-21,Action / Adventure,85000000,143,Divergent (2014),Divergent,158789300,21,3,1,0,2014
-493,R,Weinstein Company,2012-12-25,Western,100000000,165,Django Unchained (2012),Django Unchained,175398700,25,12,4,0,2012
+493,R,Weinstein,2012-12-25,Western,100000000,165,Django Unchained (2012),Django Unchained,175398700,25,12,4,0,2012
 494,PG-13,Fox,2004-06-18,Sports Comedy,20000000,97,DodgeBall: A True Underdog Story (2004),DodgeBall:A True Underdog Story,157958700,18,6,2,0,2004
 495,R,Lions Gate,1999-11-12,Fantasy Comedy,10000000,130,Dogma (1999),Dogma,51585300,12,11,4,0,1999
 496,R,Lions Gate,2004-03-26,Period Drama,10000000,177,Dogville (2004),Dogville,2121200,26,3,1,0,2004
@@ -558,7 +558,7 @@
 556,R,Sony / Columbia,2014-09-26,Thriller,55000000,128,The Equalizer (2014),The Equalizer,104971700,26,9,3,0,2014
 557,PG,Fox,2006-12-15,Fantasy,100000000,99,Eragon (2006),Eragon,96598900,15,12,4,0,2006
 558,R,Universal,2000-03-17,Drama,52000000,130,Erin Brockovich (2000),Erin Brockovich,199927100,17,3,1,0,2000
-559,PG,Weinstein Company,2013-02-15,Animation,40000000,89,Escape From Planet Earth (2013),Escape From Planet Earth,61420000,15,2,1,0,2013
+559,PG,Weinstein,2013-02-15,Animation,40000000,89,Escape From Planet Earth (2013),Escape From Planet Earth,61420000,15,2,1,0,2013
 560,R,Focus Features,2004-03-19,Sci-Fi Comedy,20000000,108,Eternal Sunshine of the Spotless Mind (2004),Eternal Sunshine of the Spotless Mind,47528900,19,3,1,0,2004
 561,R,DreamWorks,2004-02-20,Comedy,25000000,92,Eurotrip (2004),Eurotrip,24553700,20,2,1,0,2004
 562,PG,Universal,2007-06-22,Fantasy Comedy,175000000,90,Evan Almighty (2007),Evan Almighty,125285800,22,6,2,0,2007
@@ -691,7 +691,7 @@
 689,PG-13,Paramount,2013-03-28,Action,130000000,99,G.I. Joe: Retaliation (2013),G.I. Joe:Retaliation,126043400,28,3,1,0,2013
 690,R,Sony / Columbia,2011-12-21,Thriller,90000000,160,The Girl with the Dragon Tattoo (2011) (2011),The Girl with the Dragon Tattoo (2011),111566300,21,12,4,0,2011
 691,R,Sony / Columbia,1999-12-21,Drama,40000000,127,"Girl, Interrupted (1999)","Girl, Interrupted",46054800,21,12,4,0,1999
-692,PG-13,Weinstein Company,2014-08-15,Fantasy Drama,25000000,91,The Giver (2014),The Giver,47833500,15,8,3,0,2014
+692,PG-13,Weinstein,2014-08-15,Fantasy Drama,25000000,91,The Giver (2014),The Giver,47833500,15,8,3,0,2014
 693,R,DreamWorks,2000-05-05,Historical Epic,103000000,155,Gladiator (2000),Gladiator,298704500,5,5,2,0,2000
 694,PG,Fox,2011-08-12,Concert,9000000,100,Glee The 3D Concert Movie (2011),Glee The 3D Concert Movie,12818600,12,8,3,0,2011
 695,PG-13,Fox,2001-09-21,Music Drama,22000000,104,Glitter (2001),Glitter,6479600,21,9,3,0,2001
@@ -825,7 +825,7 @@
 823,PG-13,Fox,2016-06-24,Sci-Fi Adventure,165000000,120,Independence Day: Resurgence (2016),Independence Day:Resurgence,92445200,24,6,2,0,2016
 824,R,Sony / Columbia,2003-04-25,Thriller,28000000,87,Identity (2003),Identity,74217100,25,4,2,0,2003
 825,R,Universal,2013-02-08,Comedy,35000000,111,Identity Thief (2013),Identity Thief,145348800,8,2,1,0,2013
-826,PG-13,Weinstein Company,2011-09-16,Comedy,24000000,95,I Don't Know How She Does It (2011),I Don't Know How She Does It,10441100,16,9,3,0,2011
+826,PG-13,Weinstein,2011-09-16,Comedy,24000000,95,I Don't Know How She Does It (2011),I Don't Know How She Does It,10441100,16,9,3,0,2011
 827,PG-13,Warner Bros. /New Line,2014-08-22,Drama,11000000,106,If I Stay (2014),If I Stay,53534200,22,8,3,0,2014
 828,PG-13,Lionsgate,2014-01-24,Action Horror,65000000,92,"I, Frankenstein (2014)","I, Frankenstein",20561000,24,1,1,0,2014
 829,R,MGM,2002-09-13,Comedy,9000000,98,Igby Goes Down (2002),Igby Goes Down,7049600,13,9,3,0,2002
@@ -845,7 +845,7 @@
 843,PG,Paramount,1984-05-23,Period Adventure,28000000,118,Indiana Jones and the Temple of Doom (1984),Indiana Jones and the Temple of Doom,459311600,23,5,2,0,1984
 844,R,DreamWorks,1999-01-15,Thriller,30000000,98,In Dreams (1999),In Dreams,20297100,15,1,1,0,1999
 845,R,Warner Bros.,2009-09-18,Drama / Thriller,22000000,108,The Informant! (2009),The Informant!,37882600,18,9,3,0,2009
-846,R,Weinstein Company,2009-08-21,War,70000000,152,Inglourious Basterds (2009),Inglourious Basterds,138438400,21,8,3,0,2009
+846,R,Weinstein,2009-08-21,War,70000000,152,Inglourious Basterds (2009),Inglourious Basterds,138438400,21,8,3,0,2009
 847,PG,Warner Bros. /New Line,2009-01-23,Fantasy,60000000,106,Inkheart (2009),Inkheart,20677400,23,1,1,0,2009
 848,NC-17,Universal,2005-02-11,Documentary,2000000,92,Inside Deep Throat (2005),Inside Deep Throat,926100,11,2,1,1,2005
 849,R,Universal,2006-03-24,Crime Thriller,45000000,128,Inside Man (2006),Inside Man,115945900,24,3,1,0,2006
@@ -1221,7 +1221,7 @@
 1219,PG,Fox,2014-12-19,Family Adventure,127000000,97,Night at the Museum: Secret of the Tomb (2014),Night at the Museum:Secret of the Tomb,119358900,19,12,4,1,2014
 1220,R,Warner Bros. /New Line,2010-04-30,Horror,35000000,90,A Nightmare on Elm Street (2010) (2010),A Nightmare on Elm Street (2010),68073400,30,4,2,0,2010
 1221,PG,Fox,2008-04-04,Family Adventure,37000000,95,Nim's Island (2008),Nim's Island,57367400,4,4,2,0,2008
-1222,PG-13,Weinstein Company,2009-12-18,Drama,80000000,110,Nine (2009),Nine,21711000,18,12,4,1,2009
+1222,PG-13,Weinstein,2009-12-18,Drama,80000000,110,Nine (2009),Nine,21711000,18,12,4,1,2009
 1223,R,Artisan,2000-03-10,Horror,38000000,133,The Ninth Gate (2000),The Ninth Gate,29705800,10,3,1,0,2000
 1224,R,Warner Bros.,2009-11-25,Action,40000000,99,Ninja Assassin (2009),Ninja Assassin,42942700,25,11,4,0,2009
 1225,PG-13,Paramount,2014-03-28,Drama,125000000,138,Noah (2014),Noah,104237300,28,3,1,0,2014
@@ -1279,7 +1279,7 @@
 1277,PG-13,Fox,2014-04-25,Comedy,40000000,109,The Other Woman (2014) (2014),The Other Woman (2014),86450900,25,4,2,0,2014
 1278,PG-13,Universal,2014-10-24,Horror,5000000,89,Ouija (2014),Ouija,52571600,24,10,4,0,2014
 1279,R,Warner Bros.,2015-10-30,Comedy / Drama,28000000,108,Our Brand Is Crisis (2015) (2015),Our Brand Is Crisis (2015),6905700,30,10,4,0,2015
-1280,R,Weinstein Company,2011-08-26,Comedy,5000000,90,Our Idiot Brother (2011),Our Idiot Brother,26816400,26,8,3,0,2011
+1280,R,Weinstein,2011-08-26,Comedy,5000000,90,Our Idiot Brother (2011),Our Idiot Brother,26816400,26,8,3,0,2011
 1281,PG-13,Buena Vista,2001-11-21,Comedy,24000000,89,Out Cold (2001),Out Cold,21066000,21,11,4,0,2001
 1282,Unrated,Cinema Libre,2004-08-06,Documentary,200000,77,Outfoxed: Rupert Murdoch's War on Journalism (2004),Outfoxed:Rupert Murdoch's War on Journalism,637700,6,8,3,0,2004
 1283,R,Third Rail Releasing,2009-01-23,Sci-Fi Adventure,50000000,115,Outlander (2009),Outlander,198400,23,1,1,0,2009
@@ -1330,7 +1330,7 @@
 1328,PG,Universal,2003-12-25,Family Adventure,100000000,113,Peter Pan (2003),Peter Pan,67101900,25,12,4,0,2003
 1329,PG-13,Warner Bros.,2004-12-22,Musical,70000000,143,The Phantom of the Opera (2004),The Phantom of the Opera,69117200,22,12,4,0,2004
 1330,PG-13,Fox Searchlight,2006-04-07,Comedy,3000000,99,Phat Girlz (2006),Phat Girlz,9249500,7,4,2,0,2006
-1331,PG-13,Weinstein Company,2013-11-22,Drama,12000000,95,Philomena (2013),Philomena,39884800,22,11,4,1,2013
+1331,PG-13,Weinstein,2013-11-22,Drama,12000000,95,Philomena (2013),Philomena,39884800,22,11,4,1,2013
 1332,R,Fox,2003-04-04,Thriller,13000000,81,Phone Booth (2003),Phone Booth,66258400,4,4,2,0,2003
 1333,R,Focus Features,2002-12-25,War Drama,35000000,148,The Pianist (2002),The Pianist,46348800,25,12,4,1,2002
 1334,PG-13,United Artists,2003-10-17,Comedy / Drama,300000,80,Pieces of April (2003),Pieces of April,3590300,17,10,4,1,2003
@@ -1417,7 +1417,7 @@
 1415,G,Buena Vista,2007-06-29,Animation,150000000,111,Ratatouille (2007),Ratatouille,257456900,29,6,2,0,2007
 1416,R,Relativity,2012-04-27,Thriller,26000000,103,The Raven (2012),The Raven,16917300,27,4,2,0,2012
 1417,PG-13,Universal,2004-10-29,Music Drama,40000000,152,Ray (2004),Ray,103901600,29,10,4,0,2004
-1418,R,Weinstein Company,2008-12-10,Period Drama,32000000,122,The Reader (2008),The Reader,40861800,10,12,4,0,2008
+1418,R,Weinstein,2008-12-10,Period Drama,32000000,122,The Reader (2008),The Reader,40861800,10,12,4,0,2008
 1419,PG-13,Warner Bros.,2000-04-07,Sports Comedy,24000000,106,Ready to Rumble (2000),Ready to Rumble,19729700,7,4,2,0,2000
 1420,PG,Buena Vista,2012-11-02,Animation,165000000,108,Wreck-It Ralph (2012),Wreck-It Ralph,202095300,2,11,4,0,2012
 1421,G,Buena Vista,2001-02-16,Animation,23000000,84,Recess: School's Out (2001),Recess:School's Out,55642900,16,2,1,0,2001
@@ -1577,11 +1577,11 @@
 1575,R,Orion Pictures,1991-02-14,Thriller,19000000,118,The Silence of the Lambs (1991),The Silence of the Lambs,266454700,14,2,1,0,1991
 1576,R,Sony / Columbia,2006-04-21,Horror,50000000,120,Silent Hill (2006),Silent Hill,61543700,21,4,2,0,2006
 1577,R,Open Road Films,2012-10-26,Horror,20000000,94,Silent Hill: Revelation 3D (2012),Silent Hill:Revelation 3D,18683300,26,10,4,0,2012
-1578,R,Weinstein Company,2012-11-16,Comedy,21000000,122,Silver Linings Playbook (2012),Silver Linings Playbook,142154000,16,11,4,1,2012
+1578,R,Weinstein,2012-11-16,Comedy,21000000,122,Silver Linings Playbook (2012),Silver Linings Playbook,142154000,16,11,4,1,2012
 1579,PG-13,Fox,2007-07-27,Animation,75000000,87,The Simpsons Movie (2007),The Simpsons Movie,228386400,27,7,3,0,2007
 1580,PG,DreamWorks,2003-07-02,Animation,60000000,86,Sinbad: Legend of the Seven Seas (2003),Sinbad:Legend of the Seven Seas,37682900,2,7,3,0,2003
 1581,R,Dimension Films,2005-04-01,Crime,40000000,125,Sin City (2005),Sin City,99190400,1,4,2,0,2005
-1582,R,Weinstein Company,2009-12-11,Drama,7000000,99,A Single Man (2009),A Single Man,9963200,11,12,4,0,2009
+1582,R,Weinstein,2009-12-11,Drama,7000000,99,A Single Man (2009),A Single Man,9963200,11,12,4,0,2009
 1583,R,Lionsgate/Summit,2012-10-12,Horror,3000000,110,Sinister (2012),Sinister,51253900,12,10,4,0,2012
 1584,R,Focus Features,2015-08-21,Horror,10000000,97,Sinister 2 (2015),Sinister 2,28832700,21,8,3,0,2015
 1585,R,Fox,2011-12-09,Comedy,25000000,100,The Sitter (2011),The Sitter,33285000,9,12,4,0,2011
@@ -1620,7 +1620,7 @@
 1618,PG-13,Warner Bros.,2005-09-02,Sci-Fi Horror,80000000,103,A Sound of Thunder (2005),A Sound of Thunder,2543800,2,9,3,0,2005
 1619,PG-13,Summit Entertainment,2011-04-01,Sci-Fi Thriller,32000000,94,Source Code (2011),Source Code,58244200,1,4,2,0,2011
 1620,R,Paramount,1999-06-30,Animation,21000000,80,"South Park - Bigger, Longer and Uncut (1999)","South Park - Bigger, Longer and Uncut",87890300,30,6,2,0,1999
-1621,R,Weinstein Company,2015-07-24,Drama,30000000,123,Southpaw (2015),Southpaw,54503200,24,7,3,0,2015
+1621,R,Weinstein,2015-07-24,Drama,30000000,123,Southpaw (2015),Southpaw,54503200,24,7,3,0,2015
 1622,G,Fox,2008-07-18,Animation,37000000,81,Space Chimps (2008),Space Chimps,35976200,18,7,3,0,2008
 1623,PG-13,Warner Bros.,2000-08-04,Action Thriller,65000000,130,Space Cowboys (2000),Space Cowboys,143960500,4,8,3,0,2000
 1624,PG-13,Sony / Columbia,2004-12-17,Comedy / Drama,80000000,111,Spanglish (2004),Spanglish,58261200,17,12,4,0,2004
@@ -1723,7 +1723,7 @@
 1721,R,Warner Bros.,2003-07-02,Sci-Fi Action,200000000,109,Terminator 3: Rise of the Machines (2003),Terminator 3:Rise of the Machines,213960900,2,7,3,0,2003
 1722,PG-13,Warner Bros.,2009-05-21,Sci-Fi Action,200000000,114,Terminator Salvation (2009),Terminator Salvation,144137700,21,5,2,0,2009
 1723,PG-13,Summit Entertainment,2010-02-19,Thriller,45000000,128,The Ghost Writer (2010),The Ghost Writer,16773100,19,2,1,1,2010
-1724,R,Weinstein Company,2015-12-25,Western,44000000,167,The Hateful Eight (2015),The Hateful Eight,53933400,25,12,4,1,2015
+1724,R,Weinstein,2015-12-25,Western,44000000,167,The Hateful Eight (2015),The Hateful Eight,53933400,25,12,4,1,2015
 1725,PG-13,Fox,2015-04-10,Romance,34000000,139,The Longest Ride (2015),The Longest Ride,37337900,10,4,2,0,2015
 1726,PG,Buena Vista,2011-11-23,Family Comedy,45000000,120,The Muppets (2011),The Muppets,97011300,23,11,4,0,2011
 1727,PG-13,Focus Features,2014-11-07,Drama,15000000,123,The Theory of Everything (2014),The Theory of Everything,37438100,7,11,4,1,2014
@@ -1920,7 +1920,7 @@
 1918,R,Paramount,2013-12-25,Drama,100000000,180,The Wolf of Wall Street (2013),The Wolf of Wall Street,125205200,25,12,4,0,2013
 1919,PG-13,Fox,2009-05-01,Action / Adventure,150000000,107,X-Men Origins: Wolverine (2009),X-Men Origins:Wolverine,206889700,1,5,2,0,2009
 1920,PG-13,Fox,2013-07-26,Action,120000000,126,The Wolverine (2013),The Wolverine,144966900,26,7,3,0,2013
-1921,PG-13,Weinstein Company,2015-04-01,Drama,11000000,109,Woman in Gold (2015),Woman in Gold,33293700,1,4,2,1,2015
+1921,PG-13,Weinstein,2015-04-01,Drama,11000000,109,Woman in Gold (2015),Woman in Gold,33293700,1,4,2,1,2015
 1922,PG-13,Picturehouse,2008-09-12,Comedy,16000000,114,The Women (2008) (2008),The Women (2008),32147600,12,9,3,0,2008
 1923,R,Paramount,2000-02-23,Comedy / Drama,55000000,111,Wonder Boys (2000),Wonder Boys,30837500,23,2,1,0,2000
 1924,PG-13,CBS Films,2012-09-07,Drama,6000000,96,The Words (2012),The Words,12146000,7,9,3,0,2012
@@ -1952,7 +1952,7 @@
 1950,PG,Paramount,2005-11-23,Family Comedy,45000000,90,"Yours, Mine and Ours (2005)","Yours, Mine and Ours",71383100,23,11,4,0,2005
 1951,R,Weinstein / Dimension,2010-01-08,Comedy,18000000,90,Youth in Revolt (2010),Youth in Revolt,16492300,8,1,1,0,2010
 1952,PG,Warner Bros.,1998-12-18,Romantic Comedy,65000000,119,You've Got Mail (1998),You've Got Mail,204575000,18,12,4,1,1998
-1953,R,Weinstein Company,2008-10-31,Comedy,24000000,101,Zack and Miri Make a Porno (2008),Zack and Miri Make a Porno,37591800,31,10,4,0,2008
+1953,R,Weinstein,2008-10-31,Comedy,24000000,101,Zack and Miri Make a Porno (2008),Zack and Miri Make a Porno,37591800,31,10,4,0,2008
 1954,PG,Sony / Columbia,2005-11-11,Family Adventure,65000000,113,Zathura (2005),Zathura,39129300,11,11,4,0,2005
 1955,R,Paramount,2007-03-02,Thriller,65000000,156,Zodiac (2007),Zodiac,41253900,2,3,1,0,2007
 1956,PG,Sony / Columbia,2011-07-08,Comedy,80000000,104,Zookeeper (2011),Zookeeper,86848300,8,7,3,0,2011
