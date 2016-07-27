@@ -66,16 +66,6 @@ def release_info(release_dates):
     df_ts.to_csv('market_data.csv')
     return df_ts
 
-def holiday_info(release_dates):
-    df_holidays = pd.read_csv('../data/holidays.csv')
-    holidays = pd.DataFrame()
-    vacation = ['year','winter_end', 'summer_start', 'summer_end', 'winter_start']
-    df_vacation = df_holidays[vacation]
-
-    holidays['vacation'] =
-    holidays['holiday'] =
-    return holidays
-
 def load_dataframe():
     """
     INPUT: filename preprocessed revenue data

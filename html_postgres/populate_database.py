@@ -33,9 +33,9 @@ def get_revenue_table(file):
         dt_obj = datetime.strptime(release_date, '%B %d %Y')
         # Of the form datetime.datetime(2016, 5, 6, 0, 0) (e.g. dt_obj.year = 2016)
         genre = unidecode(re.sub('[!@#$,]', '', info[3].get_text()))
-        runtime_pre = production_budget = re.sub('[!@#$,.a-zA-z]', '', info[4].get_text()).strip().split()
+        runtime_pre = re.sub('[!@#$,.a-zA-z]', '', info[4].get_text()).strip().split()
         runtime = int(runtime_pre[0]) * 60 + int(runtime_pre[1])
-        MPAA = production_budget = re.sub('[!@#$,]', '', info[5].get_text())
+        MPAA = re.sub('[!@#$,]', '', info[5].get_text())
 
         # Convert production budget string to integer
         production_budget_pre1 = unidecode(re.sub('[!@#$,]', '', info[6].get_text()))

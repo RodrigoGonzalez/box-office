@@ -14,6 +14,7 @@ from xvfbwrapper import Xvfb
 import selenium.webdriver.support.ui as ui
 from selenium.webdriver.common.keys import Keys
 import sys, getopt
+import re
 
 # vdisplay = Xvfb
 # vdisplay.start()
@@ -26,7 +27,7 @@ def extract_links(movie_name):
     display = Display(visible=0, size=(1920, 1080))
     display.start()
 
-    path_to_chromedriver = '/Users/rodrigogonzalez/Dropbox/Galvanize/box-office/selenium/chromedriver'
+    path_to_chromedriver = '/Users/rodrigogonzalez/Desktop/chromedrive/chromedriver'
 
     # Set option for chromebrowser
     chrome_options = webdriver.ChromeOptions()
@@ -43,16 +44,14 @@ def extract_links(movie_name):
     url = 'https://www.rottentomatoes.com/'
     browser.get(url)
 
-    # For rottentomatoes
-    # name = 'search'
-    # id = 'search-term'
     try:
         # Clear the search field, and input the search term
         browser.find_element_by_id('search-term').clear()
-        browser.find_element_by_id('search-term').send_keys(movie_name)
+        browser.find_element_by_id('search-term').send_keys(re.sub(':', ' : ', movie_name))
 
         # Click search
-        browser.find_element_by_xpath('//*[@id="header_brand_column"]/div[1]/form/div/div/div[1]/button').click()
+        browser.find_element_by_xpath('//*[@id="search-form"]/div/div/div[1]/div[1]/button/em').click()
+
 
         # First Link
         # //*[@id="movie_results_ul"]/li[1]/div/div/a
@@ -81,8 +80,9 @@ def extract_links(movie_name):
             links.append(unidecode(link.get_attribute('href')))
             print unidecode(link.get_attribute('href'))
 
-        filename = "".join(movie_name.lower().split())
-        pd.DataFrame(links).to_csv('../critic_links/'+ filename +'.txt', sep='\t', index=False)
+        # key
+        filename = "".join([re.sub('[!@#$:,]', '', x) for x in movie_name.lower().split()])
+        pd.DataFrame(links).to_csv('../critic_links2/'+ filename +'.txt', sep='\t', index=False)
 
     except Exception, e:
         empty_keys.append(movie_name)
@@ -92,13 +92,13 @@ def extract_links(movie_name):
 
 if __name__ == '__main__':
     empty_keys = []
-    df = pd.read_csv('try2.csv')
+    df = pd.read_csv('../html_postgres/movie_revs.csv')
 
     n = int(sys.argv[1])
-    range1 = n * 79
-    range2 = 79 + n * 79
+    range1 = n * 89
+    range2 = 89 + n * 89
 
-    for title in df['0'][range1:range2]:
+    for title in df['title2'][range1:range2]:
         extract_links(title)
         # empty_keys.append(title)
-    np.savetxt("empty_keys_2_" + str(n) + ".csv", empty_keys, delimiter=",", fmt='%s')
+    np.savetxt("empty_keys" + str(n) + ".csv", empty_keys, delimiter=",", fmt='%s')
