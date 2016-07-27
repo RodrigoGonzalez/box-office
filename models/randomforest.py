@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import yahoo_finance
 from sklearn.ensemble import RandomForestRegressor
@@ -29,14 +29,18 @@ def process_date(string):
     date[2] = '01'
     return '-'.join(date)
 
-def market_close(string):
+def market_date(string, ticker):
     """
-    INPUT: string
-    OUTPUT:
+    INPUT: string, ticker representation
+    OUTPUT: float
     """
     date = datetime.strptime(string, '%Y-%m-%d')
-    date.weekday()
-    return '-'.join(date)
+    delta = timedelta(days=2)
+    delta0 = (date - delta).strftime('%Y-%m-%d')
+    delta1 = (date + delta).strftime('%Y-%m-%d')
+    historical_close = ticker.get_historical(delta0, delta1)
+    close = np.mean([float(x['Close']) for x in historical_close])
+    return close
 
 def release_info(release_dates):
     """
@@ -47,22 +51,30 @@ def release_info(release_dates):
 
     df_CPI_entertainment = pd.read_csv('../data/CPI-UrbanConsumers-AdmissionMoviesTheatersConcerts.csv')
     df_CPI = pd.read_csv('../data/CPIAUCSL.csv')
-    df_holidays = pd.read_csv('../data/holidays.csv')
 
     CPI = dict(zip(df_CPI['DATE'], df_CPI['CPIAUCSL']))
     CPI_E = dict(zip(df_CPI_entertainment['DATE'], df_CPI_entertainment['CUSR0000SS62031']))
 
-    Z = yahoo_finance.Share('^GSPC')
-    Z = yahoo_finance.Share('^IXIC')
+    S = yahoo_finance.Share('^GSPC')
+    N = yahoo_finance.Share('^IXIC')
 
     df_ts['keys'] = release_dates['dt_obj'].apply(process_date)
-    df_ts['market_keys'] = release_dates['dt_obj'].apply(market_close)
     df_ts['CPI'] = [CPI[x] for x in df_ts['keys']]
     df_ts['CPI_E'] = [CPI_E[x] for x in df_ts['keys']]
-    df_ts['LIBOR'] =
-    df_ts['NASDAQ'] =
-
+    df_ts['SP500'] = [market_date(x, S) for x in release_dates['dt_obj']]
+    df_ts['NASDAQ'] = [market_date(x, N) for x in release_dates['dt_obj']]
+    df_ts.to_csv('market_data.csv')
     return df_ts
+
+def holiday_info(release_dates):
+    df_holidays = pd.read_csv('../data/holidays.csv')
+    holidays = pd.DataFrame()
+    vacation = ['year','winter_end', 'summer_start', 'summer_end', 'winter_start']
+    df_vacation = df_holidays[vacation]
+
+    holidays['vacation'] =
+    holidays['holiday'] =
+    return holidays
 
 def load_dataframe():
     """
@@ -83,8 +95,8 @@ def load_dataframe():
 
     time_columns = ['dt_obj', 'year', 'month', 'day']
     # release_dates = df[time_columns]
-    df_ts = release_info(df['time_columns'])
-
+    # df_ts = release_info(df['time_columns'])
+    df_ts = pd.load_csv('market_data.csv')
     df = df.join(distributors)
     df = df.join(genres)
     df = df.join(df_ts)
@@ -92,7 +104,7 @@ def load_dataframe():
     columns_to_dummy = ['MPAA', 'season', 'month']
     df = pd.get_dummies(df, columns=columns_to_dummy, drop_first=True)
 
-    columns_to_drop = ['Unnamed: 0', 'day', 'title1', 'title2','dt_obj', 'index']
+    columns_to_drop = ['Unnamed: 0', 'day', 'title1', 'title2','dt_obj', 'index', 'keys']
     df.drop(labels=columns_to_drop, inplace=True, axis=1)
 
     return df
