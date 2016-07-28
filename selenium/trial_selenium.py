@@ -27,7 +27,7 @@ def extract_links(movie_name):
     display = Display(visible=0, size=(1920, 1080))
     display.start()
 
-    path_to_chromedriver = '/Users/rodrigogonzalez/Desktop/chromedrive/chromedriver'
+    path_to_chromedriver = '/Users/rodrigogonzalez/Desktop/chromedrive3/chromedriver'
 
     # Set option for chromebrowser
     chrome_options = webdriver.ChromeOptions()
@@ -52,22 +52,13 @@ def extract_links(movie_name):
         # Click search
         browser.find_element_by_xpath('//*[@id="search-form"]/div/div/div[1]/div[1]/button/em').click()
 
-
-        # First Link
-        # //*[@id="movie_results_ul"]/li[1]/div/div/a
-        # or //*[@id="movie_results_ul"]/li/div/div/a
-        # Figure out how to use contains term
-        # dyn_frame = browser.find_element_by_xpath('//*[contains(@id, "movie_results_ul")]')
-
-        # Find the first search result (default)
-
-
-        dyn_frame = browser.find_element_by_xpath('//*[@id="movie_results_ul"]/li/div/div/a')
-
-        linkname = dyn_frame.get_attribute('href')
-
-        # Go to the movie URL
-        browser.get(linkname)
+        # # Find the first search result (default)
+        # dyn_frame = browser.find_element_by_xpath('//*[@id="movie_results_ul"]/li/div/div/a')
+        #
+        # linkname = dyn_frame.get_attribute('href')
+        #
+        # # Go to the movie URL
+        # browser.get(linkname)
         dyn_frame2 = browser.find_element_by_xpath('//*[@id="criticHeaders"]/a[2]').click()
 
         # Get all reviews links in id = "content"
@@ -92,13 +83,14 @@ def extract_links(movie_name):
 
 if __name__ == '__main__':
     empty_keys = []
-    df = pd.read_csv('../html_postgres/movie_revs.csv')
+    df = pd.read_csv('secondpass.csv')
 
     n = int(sys.argv[1])
-    range1 = n * 89
-    range2 = 89 + n * 89
+    range1 = n * 38
+    range2 = 38 + n * 38
 
-    for title in df['title2'][range1:range2]:
+    for title in df['0'][range1:range2]:
         extract_links(title)
         # empty_keys.append(title)
-    np.savetxt("empty_keys" + str(n) + ".csv", empty_keys, delimiter=",", fmt='%s')
+        print empty_keys
+    np.savetxt("pass2_empty_keys" + str(n) + ".csv", empty_keys, delimiter=",", fmt='%s')
