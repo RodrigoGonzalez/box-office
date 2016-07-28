@@ -7,9 +7,14 @@ import re
 import urllib2
 import requests
 
+def load_dataframe():
+    df = pd.read_csv('movie_revs.csv')
+    df['key'] = ["".join([re.sub('[!@#$/:,]', '', x) for x in y.lower().split()]) for y in df['title2']]
+    return df
 
-df = pd.read_csv('movie_revs.csv')
-df['key'] = ["".join([re.sub('[!@#$/:,]', '', x) for x in y.lower().split()]) for y in df['title2']]
+# def 
 
-
-df = pd.DataFrame()
+if __name__ == '__main__':
+    df = load_dataframe()
+    columns = ['key', 'critic', 'review']
+    df_reviews = pd.DataFrame(columns=columns)
