@@ -6,19 +6,23 @@ from unidecode import unidecode
 import re
 import requests
 import bleach
+from __future__ import division
 
 def load_dataframe():
     df = pd.read_csv('movie_revs.csv')
     df['movie_key'] = ["".join([re.sub('[!@#$/:,]', '', x) for x in y.lower().split()]) for y in df['title2']]
-    df['match_key'] = df['title1'].apply(keyify)
+    df['match_key'] = df['title1'].apply(word_set)
     return df
 
-def keyify(string):
+def word_set(string):
     return set(re.sub('\W', ' ', string).lower().split())
     # for flagging
 
-def extract_text(link):
-    r = requests.get(link)
+def include_review(title, main_text):
+    x = np.sum([1 for word in title if word in main_text])
+    return x
+
+def extract_text(r):
 
     f = r.text
 
@@ -54,13 +58,21 @@ def extract_text(link):
 
     return perfect
 
-def 
+def populate(link):
+    r = requests.get(link)
+
+    if r.status_code == requests.codes.ok:
+        return extract_text(r)
+    else:
+        return None
+
+def list_of_links():
+    
+    pass
 
 if __name__ == '__main__':
     df = load_dataframe()
     columns = ['id', 'movie_key', 'critic', 'review']
     df_reviews = pd.DataFrame(columns=columns)
 
-Use
-if r.status_code == requests.codes.ok:
-r.status_code
+    for
