@@ -1,3 +1,4 @@
+from __future__ import division
 import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
@@ -6,7 +7,6 @@ from unidecode import unidecode
 import re, os
 import requests
 import bleach
-from __future__ import division
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -24,7 +24,7 @@ def include_review(title, main_text):
     x = np.sum([1 for word in title if word in main_text])
     return x
 
-def extract_text(r):
+def extract_text(link):
     try:
         r = requests.get(link)
         stat_code = r.status_code
@@ -60,12 +60,13 @@ def extract_text(r):
         # perfect
         perfect = re.sub('[*\']', '', snow_white)
 
-        return perfect, status_code
+        return perfect, stat_code
 
     except Exception, e:
         missing_information.append(link)
         logging.exception(e)
         perfect = '0'
+        status_code = '0'
         return perfect, status_code
 
 def populate(link):
@@ -102,7 +103,7 @@ if __name__ == '__main__':
     for filename in os.listdir(path):
         file = path + "/" + filename
         columns = ['review', 'link', 'status_code']
-        review_data = pd.DataFrame(list_of_links(file), columns, index=[1,])
+        review_data = pd.DataFrame(list_of_links(file), columns=columns)
         id_base = re.sub('.txt', '', filename)
         review_data['id'] = [id_base + str(item) for item in xrange(review_data.shape[0])]
         review_data['movie_key'] = re.sub('.txt', '', filename)
@@ -110,6 +111,7 @@ if __name__ == '__main__':
         df_reviews = pd.concat([df_reviews, review_data], axis=0)
         df_reviews = df_reviews.append(review_data, ignore_index=True)
         done.append(filename)
+        print filename
 
     df_reviews.to_csv('critic_reviews.csv')
     movies_done = pd.DataFrame(done, index=[1,])
