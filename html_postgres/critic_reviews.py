@@ -113,9 +113,9 @@ if __name__ == '__main__':
         done.append(filename)
         print filename
 
-    df_reviews.to_csv('critic_reviews.csv')
+    df_reviews.to_csv('critic_reviews.csv', mode = 'w', index=False)
     movies_done = pd.DataFrame(done, index=[1,])
-    movies_done.to_csv('movies_done.csv')
+    movies_done.to_csv('movies_done.csv', mode = 'w', index=False)
 
     missing_info = pd.DataFrame(missing_information, index=[1,])
-    missing_info.to_csv('missing_info.csv')
+    missing_info.to_csv('missing_info.csv', mode = 'w', index=False)

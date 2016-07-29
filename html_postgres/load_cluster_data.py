@@ -17,19 +17,32 @@ def connect():
 	# conn.cursor will return a cursor object, you can use this cursor to perform queries
 	cursor = conn.cursor()
 	print "Connected!\n"
+	return conn, cursor
 
 def execute_find_movie(title, year):
 	# execute our Query
-	cursor.execute("SELECT * FROM title WHERE title = title AND production_year = year LIMIT 15")
-	records = cursor.fetchall()
+	try:
+		cursor.execute("SELECT * FROM title WHERE title like title AND production_year = year AND kind_id = 1 LIMIT 15")
+		records = cursor.fetchall()
+	except:
+    	conn.rollback()
+		print "error: " + title
+		records = None
 	return records
 
 def prepare_title(title):
 
 	return new_title
 
+def first_pass():
+	pass
+
 if __name__ == "__main__":
-	connect()
-	df = pd.read_csv('movie_revs.csv')
+	conn, cursor = connect()
+	df = pd.read_csv('search_titles.csv')
+
+
 
 where movetitle like '%10,000%'
+
+cursor.execute("SELECT * FROM title WHERE title = 'The Powerpuff Girls Movie' AND production_year = 2013 AND kind_id = 1 LIMIT 15")
