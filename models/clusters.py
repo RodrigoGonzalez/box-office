@@ -5,7 +5,7 @@ import sys
 
 
 
+
 if __name__ == "__main__":
-	connect()
 	df_basedata = pd.read_csv('../html_postgres/movie_revs.csv')
 	df =
