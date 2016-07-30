@@ -106,7 +106,7 @@ if __name__ == '__main__':
     df_reviews = pd.DataFrame(columns=columns)
 
     path = '../critic_links2'
-    files = os.listdir(path)[1800:]
+    files = os.listdir(path)
 
     for filename in files:
         files_done = set([comparison(x) for x in os.listdir('../critic_reviews')])
