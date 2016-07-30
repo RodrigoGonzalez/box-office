@@ -23,10 +23,10 @@ def execute_find_movie(title, year):
 	# execute our Query
 	try:
 		cursor.execute("SELECT * FROM title WHERE title = '{}' AND production_year = '{}' AND kind_id = 1 LIMIT 15".format(title, year))
-		records1 = cursor.fetchall()
+		records 1 = cursor.fetchall()
 	except:
-    	conn.rollback()
-		print "error1: " + title
+		conn.rollback()
+		print "error 1: " + title
 	try:
 		cursor.execute("SELECT * FROM aka_title WHERE title = '{}' AND production_year = '{}' AND kind_id = 1 LIMIT 15".format(title, year))
 		records2 = cursor.fetchall()
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
 	psql_cols = ['id', 'title', 'imdb_index', 'kind_id', 'production_year', 'imdb_id', 'phonetic_code', 'episode_of_id', 'season_nr', 'episode_nr', 'series_years', 'md5sum']
 
-	for title, year in df.iteritems():
+	for title, year in df.():
 		records = execute_find_movie(title, year)
 		if len(records) == 0:
 			pass
@@ -63,7 +63,8 @@ if __name__ == "__main__":
 			df2 = df_titles[columns]
 			df_records = df_records.append(df2, ignore_index=True)
 
-	df_records[['id','production_year']] = ..astype(int)
+	int_columns = ['id','production_year']
+	df_records[int_columns] = df_records[int_columns].astype(int)
 	df_records.to_csv('cluster_data.csv', mode = 'w', index=False)
 
 # where movetitle like '%10,000%'
@@ -74,5 +75,3 @@ if __name__ == "__main__":
 # records1 = cursor.fetchall()
 # cursor.execute("SELECT * FROM title WHERE title like 'Hunger Games%' LIMIT 15")
 # records2 = cursor.fetchall()
-
-   ['id', 'title', 'imdb_index', 'kind_id', 'production_year', 'imdb_id', 'phonetic_code', 'episode_of_id', 'season_nr', 'episode_nr', 'series_years', 'md5sum']

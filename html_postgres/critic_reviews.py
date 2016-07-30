@@ -9,6 +9,10 @@ import requests
 import bleach
 import logging
 logging.basicConfig(level=logging.DEBUG)
+import math
+import multiprocessing
+import itertools
+from timeit import Timer
 
 def load_dataframe():
     df = pd.read_csv('movie_revs.csv')
