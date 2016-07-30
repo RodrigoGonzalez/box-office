@@ -73,6 +73,14 @@ def extract_text(link):
         status_code = '0'
         return perfect, status_code
 
+def populate(link):
+    r = requests.get(link)
+
+    if r.status_code == requests.codes.ok:
+        return extract_text(r)
+    else:
+        return None
+
 def list_of_links(file):
     data = []
     stat_codes = []
@@ -80,10 +88,11 @@ def list_of_links(file):
         links = [re.sub('[\n]', "", link) for link in f if link != '0']
     links.pop(0)
 
-    pool = multiprocessing.Pool(4)  # for each core
-    output = pool.map(extract_text, links)
-    df_reviews = pd.DataFrame(output, columns=['data', 'stat_codes'])
-    review_data = zip(df_reviews['data'], links, df_reviews['stat_codes'])
+    for link in links:
+        perfect, status_code = extract_text(link)
+        data.append(perfect)
+        stat_codes.append(status_code)
+    review_data = zip(data, links, stat_codes)
     return review_data
 
 if __name__ == '__main__':
@@ -94,9 +103,8 @@ if __name__ == '__main__':
     df_reviews = pd.DataFrame(columns=columns)
 
     path = '../critic_links2'
-    files = os.listdir(path)
 
-    for filename in files[0:3]:
+    for filename in os.listdir(path):
         file = path + "/" + filename
         columns = ['review', 'link', 'status_code']
         review_data = pd.DataFrame(list_of_links(file), columns=columns)
