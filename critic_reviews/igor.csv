@@ -1,0 +1,16 @@
+review,link,status_code,id,movie_key,critic
+0,http://www.timeout.com/film/newyork/reviews/85813/igor.html,0,igor0,igor,timeout
+0,http://bventertainment.go.com/tv/buenavista/atm/reviews.html?sec=1&subsec=5872,0,igor1,igor,go
+0,http://www.timeout.com/film/reviews/85813/igor.html,0,igor2,igor,timeout
+0,http://www.ieweekly.com/cms/story/detail/igor/1606/,0,igor3,igor,ieweekly
+0,http://www.thestar.com/entertainment/article/501983,0,igor4,igor,thestar
+0,http://www.sfgate.com/cgi-bin/article.cgi?file=/c/a/2008/09/19/DDFN12VP9T.DTL,0,igor5,igor,sfgate
+0,http://www.nypost.com/seven/09192008/entertainment/movies/going_hunchback_to_the_drawing_board_129730.htm,0,igor6,igor,nypost
+0,"http://www.guidelive.com/portal/page?_pageid=33,97283&_dad=portal&_schema=PORTAL&item_id=68047",0,igor7,igor,guidelive
+0,http://www.boston.com/ae/movies/articles/2008/09/19/doing_the_monster_movie_mash,0,igor8,igor,boston
+0,http://www.usatoday.com/life/movies/reviews/2008-09-18-igor_N.htm,0,igor9,igor,usatoday
+0,http://www.washingtonpost.com/ac2/wp-dyn?node=cityguide/profile&id=1138126&categories=Movies#editorialReview,0,igor10,igor,washingtonpost
+0,http://www.laweekly.com/2008-09-18/film-tv/movie-reviews-save-me-take-out-hounddog/,0,igor11,igor,laweekly
+0,"http://www.ew.com/ew/article/0,,20226384,00.html",0,igor12,igor,ew
+0,"http://www.orlandosentinel.com/entertainment/movies/orl-movie-review-igor-091708,0,5323622.story",0,igor13,igor,orlandosentinel
+0,http://www.variety.com/review/VE1117938366.html?categoryid=31&cs=1,0,igor14,igor,variety

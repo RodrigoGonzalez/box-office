@@ -21,14 +21,18 @@ def connect():
 
 def execute_find_movie(title, year):
 	# execute our Query
+	records1 = records2 = []
+	conn.rollback()
 	try:
-		cursor.execute("SELECT * FROM title WHERE title = '{}' AND production_year = '{}' AND kind_id = 1 LIMIT 15".format(title, year))
-		records 1 = cursor.fetchall()
+		cursor.execute('SELECT * FROM title WHERE title = {} AND production_year = {} AND kind_id = 1 LIMIT 15'.format(title, year))
+		records1 = cursor.fetchall()
 	except:
 		conn.rollback()
 		print "error 1: " + title
 	try:
-		cursor.execute("SELECT * FROM aka_title WHERE title = '{}' AND production_year = '{}' AND kind_id = 1 LIMIT 15".format(title, year))
+		print type(title)
+		print type(year)
+		cursor.execute('SELECT * FROM aka_title WHERE title = {} AND production_year = {} AND kind_id = 1 LIMIT 15'.format(title, year))
 		records2 = cursor.fetchall()
 	except:
 		conn.rollback()
@@ -53,15 +57,17 @@ if __name__ == "__main__":
 	df_records = pd.DataFrame(columns = columns)
 
 	psql_cols = ['id', 'title', 'imdb_index', 'kind_id', 'production_year', 'imdb_id', 'phonetic_code', 'episode_of_id', 'season_nr', 'episode_nr', 'series_years', 'md5sum']
-
-	for title, year in df.():
+	i = 0
+	for title, year in df.get_values().tolist():
 		records = execute_find_movie(title, year)
-		if len(records) == 0:
-			pass
-		else:
+		if len(records) != 0:
 			df_titles = pd.DataFrame(records, columns=psql_cols)
 			df2 = df_titles[columns]
 			df_records = df_records.append(df2, ignore_index=True)
+		else:
+			i += 1
+			print i
+			pass
 
 	int_columns = ['id','production_year']
 	df_records[int_columns] = df_records[int_columns].astype(int)

@@ -95,6 +95,9 @@ def list_of_links(file):
     review_data = zip(data, links, stat_codes)
     return review_data
 
+def comparison(string):
+    return re.sub('csv', 'txt', string)
+
 if __name__ == '__main__':
     missing_information = []
     done = []
@@ -103,19 +106,28 @@ if __name__ == '__main__':
     df_reviews = pd.DataFrame(columns=columns)
 
     path = '../critic_links2'
+    files = os.listdir(path)[1800:]
 
-    for filename in os.listdir(path):
-        file = path + "/" + filename
-        columns = ['review', 'link', 'status_code']
-        review_data = pd.DataFrame(list_of_links(file), columns=columns)
-        id_base = re.sub('.txt', '', filename)
-        review_data['id'] = [id_base + str(item) for item in xrange(review_data.shape[0])]
-        review_data['movie_key'] = re.sub('.txt', '', filename)
-        review_data['critic'] = [link.split('.')[1]  for link in review_data['link']]
-        df_reviews = pd.concat([df_reviews, review_data], axis=0)
-        df_reviews = df_reviews.append(review_data, ignore_index=True)
-        done.append(filename)
-        print filename
+    for filename in files:
+        files_done = set([comparison(x) for x in os.listdir('../critic_reviews')])
+
+        if filename in files_done:
+            print "done " + filename
+
+        elif filename not in files_done:
+            print "not done " + filename
+            file = path + "/" + filename
+            columns = ['review', 'link', 'status_code']
+            review_data = pd.DataFrame(list_of_links(file), columns=columns)
+            id_base = re.sub('.txt', '', filename)
+            review_data['id'] = [id_base + str(item) for item in xrange(review_data.shape[0])]
+            review_data['movie_key'] = re.sub('.txt', '', filename)
+            review_data['critic'] = [link.split('.')[1]  for link in review_data['link']]
+            review_data['status_code'] = review_data['status_code'].astype(int)
+            review_data.to_csv('../critic_reviews/{}.csv'.format(re.sub('.txt', '', filename)), mode = 'w', index = False)
+            df_reviews = pd.concat([df_reviews, review_data], axis=0)
+            df_reviews = df_reviews.append(review_data, ignore_index=True)
+            done.append(filename)
 
     df_reviews.to_csv('critic_reviews.csv', mode = 'w', index=False)
     movies_done = pd.DataFrame(done, index=[1,])

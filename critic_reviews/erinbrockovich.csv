@@ -1,0 +1,15 @@
+review,link,status_code,id,movie_key,critic
+0,http://www.observer.com/node/42723,0,erinbrockovich0,erinbrockovich,observer
+0,http://www.timeout.com/film/reviews/63963/erin_brockovich.html,0,erinbrockovich1,erinbrockovich,timeout
+0,http://www.startribune.com/stories/389/37073.html,0,erinbrockovich2,erinbrockovich,startribune
+0,http://www.sfgate.com/cgi-bin/article.cgi?f=/c/a/2000/08/18/DD73788.DTL,0,erinbrockovich3,erinbrockovich,sfgate
+0,http://www.globeandmail.com/servlet/ArticleNews/movie/MOVIEREVIEWS/20000317/TAERIN,0,erinbrockovich4,erinbrockovich,globeandmail
+0,http://www.variety.com/review/VE1117778755.html?categoryid=31&cs=1,0,erinbrockovich5,erinbrockovich,variety
+0,http://www.rogerebert.com/reviews/erin-brockovich-2000,0,erinbrockovich6,erinbrockovich,rogerebert
+0,http://www.denverpost.com/scene/erin0317.htm,0,erinbrockovich7,erinbrockovich,denverpost
+0,http://www.reelviews.net/php_review_template.php?identifier=112,0,erinbrockovich8,erinbrockovich,reelviews
+0,http://datebook.seattletimes.com/datebook/?MIval=ae_mov_edetail&event_code=17634,0,erinbrockovich9,erinbrockovich,seattletimes
+0,http://cg.zip2.com/orlando/scripts/staticpage.dll?only=y&spage=AE/movies/movies_details.htm&id=23775,0,erinbrockovich10,erinbrockovich,zip2
+0,"http://www.ew.com/ew/article/0,,64583,00.html",0,erinbrockovich11,erinbrockovich,ew
+0,"http://www.calendarlive.com/movies/reviews/cl-movie000316-43,0,639070.story",0,erinbrockovich12,erinbrockovich,calendarlive
+0,http://www.salon.com/ent/movies/review/2000/03/17/erin_brockovich,0,erinbrockovich13,erinbrockovich,salon
