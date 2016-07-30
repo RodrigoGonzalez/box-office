@@ -96,7 +96,7 @@ if __name__ == '__main__':
     path = '../critic_links2'
     files = os.listdir(path)
 
-    for filename in files[0:3]:
+    for filename in files:
         file = path + "/" + filename
         columns = ['review', 'link', 'status_code']
         review_data = pd.DataFrame(list_of_links(file), columns=columns)
@@ -104,14 +104,16 @@ if __name__ == '__main__':
         review_data['id'] = [id_base + str(item) for item in xrange(review_data.shape[0])]
         review_data['movie_key'] = re.sub('.txt', '', filename)
         review_data['critic'] = [link.split('.')[1]  for link in review_data['link']]
+        review_data['status_code'] = review_data['status_code'].astype(int)
+        review_data.to_csv('../critic_reviews/{}.csv'.format(re.sub('.txt', '', filename)), mode = 'w', index = False)
         df_reviews = pd.concat([df_reviews, review_data], axis=0)
         df_reviews = df_reviews.append(review_data, ignore_index=True)
         done.append(filename)
         print filename
 
     df_reviews.to_csv('critic_reviews.csv', mode = 'w', index=False)
-    movies_done = pd.DataFrame(done, index=[1,])
-    movies_done.to_csv('movies_done.csv', mode = 'w', index=False)
+    movies_done = pd.DataFrame(done)
+    movies_done.to_csv('movies_done.csv', mode = 'w', header=False, index=False)
 
-    missing_info = pd.DataFrame(missing_information, index=[1,])
-    missing_info.to_csv('missing_info.csv', mode = 'w', index=False)
+    missing_info = pd.DataFrame(missing_information)
+    missing_info.to_csv('missing_info.csv', mode = 'w', header=False, index=False)
