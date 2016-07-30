@@ -80,7 +80,7 @@ def list_of_links(file):
         links = [re.sub('[\n]', "", link) for link in f if link != '0']
     links.pop(0)
 
-    pool = multiprocessing.Pool(4)  # for each core
+    pool = multiprocessing.Pool(8)  # for each core
     output = pool.map(extract_text, links)
     df_reviews = pd.DataFrame(output, columns=['data', 'stat_codes'])
     review_data = zip(df_reviews['data'], links, df_reviews['stat_codes'])
