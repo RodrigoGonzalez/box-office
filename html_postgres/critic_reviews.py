@@ -9,10 +9,8 @@ import requests
 import bleach
 import logging
 logging.basicConfig(level=logging.DEBUG)
-import math
 import multiprocessing
 import itertools
-from timeit import Timer
 
 def load_dataframe():
     df = pd.read_csv('movie_revs.csv')
@@ -79,8 +77,8 @@ def list_of_links(file):
     with open(file) as f:
         links = [re.sub('[\n]', "", link) for link in f if link != '0']
     links.pop(0)
-
-    pool = multiprocessing.Pool(4)  # for each core
+    cpus = multiprocessing.cpu_count()
+    pool = multiprocessing.Pool(cpus)  # for each core
     output = pool.map(extract_text, links)
     df_reviews = pd.DataFrame(output, columns=['data', 'stat_codes'])
     review_data = zip(df_reviews['data'], links, df_reviews['stat_codes'])
