@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
-import psycopg2
+import psycopg2 as pg
 import sys
 
 def connect():
@@ -9,10 +9,10 @@ def connect():
 	conn_string = "host='localhost' dbname='movies' user='postgres' password='secret'"
 
 	# print the connection string we will use to connect
-	print "Connecting to database\n	->%s" % (conn_string)
+	print "Connecting to database\n	-> {0}".format(conn_string)
 
 	# get a connection, if a connect cannot be made an exception will be raised here
-	conn = psycopg2.connect(conn_string)
+	conn = pg.connect(conn_string)
 
 	# conn.cursor will return a cursor object, you can use this cursor to perform queries
 	cursor = conn.cursor()
@@ -24,7 +24,7 @@ def execute_find_movie(title, year):
 	records1 = records2 = []
 	conn.rollback()
 	try:
-		cursor.execute('SELECT * FROM title WHERE title = {} AND production_year = {} AND kind_id = 1 LIMIT 15'.format(title, year))
+		cursor.execute('SELECT * FROM title WHERE title = {0} AND production_year = {1} AND kind_id = 1 LIMIT 15'.format(title, year))
 		records1 = cursor.fetchall()
 	except:
 		conn.rollback()
@@ -32,11 +32,12 @@ def execute_find_movie(title, year):
 	try:
 		print type(title)
 		print type(year)
-		cursor.execute('SELECT * FROM aka_title WHERE title = {} AND production_year = {} AND kind_id = 1 LIMIT 15'.format(title, year))
+		cursor.execute('SELECT * FROM aka_title WHERE title = {0} AND production_year = {1} AND kind_id = 1 LIMIT 15'.format(title, year))
 		records2 = cursor.fetchall()
 	except:
 		conn.rollback()
 		print "error 2: " + title
+
 	records = records1 + records2
 
 	if len(records) == 0:

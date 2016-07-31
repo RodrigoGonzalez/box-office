@@ -114,7 +114,7 @@ def train_model(modeltype):
 def main():
     df = load_data()
     tokenizer1, model1 = train_model("gated_recurrent")
-    tokenizer1, model1 = train_model("lstm_recurrent")
+    tokenizer2, model2 = train_model("lstm_recurrent")
 
     X_rev = clean(df['review'].values)
     X_rev = tokenizer.transform(X_rev)

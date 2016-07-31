@@ -103,7 +103,6 @@ def RFR():
     df = load_dataframe()
     y = df.pop('total_revenues').values
     X = df.values
-    #
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
     rf = RandomForestRegressor(n_estimators=100, random_state=0)
