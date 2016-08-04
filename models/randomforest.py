@@ -86,7 +86,7 @@ def load_dataframe():
     time_columns = ['dt_obj', 'year', 'month', 'day']
     # release_dates = df[time_columns]
     # df_ts = release_info(df['time_columns'])
-    df_ts = pd.load_csv('market_data.csv')
+    df_ts = pd.read_csv('../html_postgres/market_data.csv')
     df = df.join(distributors)
     df = df.join(genres)
     df = df.join(df_ts)
