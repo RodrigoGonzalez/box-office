@@ -25,13 +25,13 @@ The aim of box-office is to:
 
 ### Data
 
-#### Data Sources
+#### Data Sources:
 
-Rotten Tomatoes (critic reviews): [Rotten Tomatoes](https://www.rottentomatoes.com): Film review aggregator, a site where people can get access to reviews from a variety of critics in the United States.
-General Movie Information (ID, title, year, actors, producer, directors, writers, lifetime earnings): [IMDb](imdb.com): An online database of information related to films & television programs, including cast, production crew, fictional characters, biographies, plot summaries, trivia and reviews.
-Federal Reserve Economic Data (Macroeconomic Indicators) [FRED](https://fred.stlouisfed.org): A database maintained by the Research division of the Federal Reserve Bank of St. Louis.
-BoxOffice Mojo (daily box office revenues, production budget, premier date, genre, production company/studio): [BoxOffice Mojo](http://www.boxofficemojo.com): Tracks box office revenue in a systematic, algorithmic way
-Yahoo Finance API (S&P500 daily index, media company stock prices): [Yahoo Finance API](http://finance.yahoo.com): Yahoo finance provides stock data.
+* Rotten Tomatoes (critic reviews): [Rotten Tomatoes](https://www.rottentomatoes.com): Film review aggregator, a site where people can get access to reviews from a variety of critics in the United States.
+* General Movie Information (ID, title, year, actors, producer, directors, writers, lifetime earnings): [IMDb](imdb.com): An online database of information related to films & television programs, including cast, production crew, fictional characters, biographies, plot summaries, trivia and reviews.
+* Federal Reserve Economic Data (Macroeconomic Indicators) [FRED](https://fred.stlouisfed.org): A database maintained by the Research division of the Federal Reserve Bank of St. Louis.
+* BoxOffice Mojo (daily box office revenues, production budget, premier date, genre, production company/studio): [BoxOffice Mojo](http://www.boxofficemojo.com): Tracks box office revenue in a systematic, algorithmic way
+* Yahoo Finance API (S&P500 daily index, media company stock prices): [Yahoo Finance API](http://finance.yahoo.com): Yahoo finance provides stock data.
 
 #### Data Scope:
 
