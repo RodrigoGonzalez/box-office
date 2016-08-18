@@ -35,7 +35,7 @@ The aim of box-office is to:
 
 #### Data Scope:
 
-The data set used in this project consists of over 75,000 critic reviews from a hundred or so publications, and the full archives of the Internet Movie Database, which was loaded into 43 different tables, some of which had more than 50 million individual data entries.
+The data set used in this project consists of over 75,000 critic reviews from a hundred or so publications, and the full archives of the Internet Movie Database, which was loaded into 43 different tables, some of which had more than 50 million individual data entries. A number of macroeconomic indicators were used as well.
 
 
 ### Analysis:
