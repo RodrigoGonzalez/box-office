@@ -40,6 +40,7 @@ The data set used in this project consists of over 75,000 critic reviews from a 
 
 ### Analysis:
 
+Analysis began with the collection of movie data from boxoffice mojo.
 
 ### Tools
 
