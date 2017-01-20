@@ -2,7 +2,7 @@
 
 ## Rodrigo Gonzalez's Capstone Project at Galvanize, Inc.
 
-### Overview
+### Overview (Currently cleaning python code 01.01.2017)
 
 box-office predicts movie box office revenues of feature length films to identify stock market opportunities in media properties. The tool is based on critic reviews, film characteristics, production budget, and what studio and players are involved. Producing a movie is a highly risky endeavor and studios rely on only a handful of extremely expensive movies every year to make sure they remain profitable. Box office hits and misses correspond to short-term changes in stock prices of media properties.
 
