@@ -19,12 +19,17 @@
 *.rar
 *.tar
 *.zip
+*.pkl
+*.pyc
+*.dropbox
 
 # Logs and databases #
 ######################
 *.log
 *.sql
 *.sqlite
+
+_MACOSX
 
 # OS generated files #
 ######################
