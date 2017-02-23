@@ -93,7 +93,7 @@ if __name__ == "__main__":
 	test_tokens = tokenizer.transform(X_test)
 	y_pred_tst = model.predict(test_tokens).flatten()
 
-	scorers = [roc_auc_score, precision_score, recall_score, f1_score]
+	scorers = [roc_auc_score, recall_score, f1_score]
 
 	for score in scorers:
 		tr_score = score(y_train, y_pred_tr)
