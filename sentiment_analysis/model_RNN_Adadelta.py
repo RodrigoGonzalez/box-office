@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from lxml import html
+import cPickle as pickle
 
 from passage.models import RNN
 from passage.updates import Adadelta
@@ -9,6 +10,7 @@ from passage.preprocessing import Tokenizer
 from passage.utils import save, load
 
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import Binarizer
 from sklearn.metrics import (roc_auc_score, precision_score, recall_score,
                              f1_score)
 
@@ -80,9 +82,12 @@ if __name__ == "__main__":
 	# Split to training and testing data
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=74)
 
-	# Train tokenizer
+	# Train/save tokenizer
 	tokenizer = tokenize(X_train)
 	X_tokens = tokenizer.transform(X_train)
+    with open('review_tokenizer.pkl','wb') as fileObject:
+        pickle.dump(tokenizer, fileObject)
+
 
 	# Train Recurrent Neural Network
 	model = train_RNN(tokenizer, X_tokens, y_train)
@@ -93,7 +98,15 @@ if __name__ == "__main__":
 	test_tokens = tokenizer.transform(X_test)
 	y_pred_tst = model.predict(test_tokens).flatten()
 
-	scorers = [roc_auc_score, recall_score, f1_score]
+	# Conver predictions to binary
+	yhat_train = y_pred_tr.reshape(-1, 1)
+	yhat_test  = y_pred_tst.reshape(-1, 1)
+	binarizer = Binarizer(threshold=0.5).fit(yhat_train)
+	yhat_tr_b = binarizer.transform(yhat_train).astype(int)
+	yhat_tst_b = binarizer.transform(yhat_test).astype(int)
+
+	# Scorers to consider
+	scorers = [roc_auc_score, recall_score, f1_score, precision_score]
 
 	for score in scorers:
 		tr_score = score(y_train, y_pred_tr)
@@ -101,6 +114,15 @@ if __name__ == "__main__":
 		print "Scoring method: {0}".format(score.func_name.title())
 		print "Train: {0:.2f}, Test: {1:.2f}".format(tr_score, t_score)
 		# '{0:.{1}f}'.format(f, 2)
+
+	# Scoring method: Roc_Auc_Score
+	# Train: 0.99, Test: 0.97
+	# Scoring method: Recall_Score
+	# Train: 0.97, Test: 0.94
+	# Scoring method: F1_Score
+	# Train: 0.95, Test: 0.92
+	# Scoring method: Precision_Score
+	# Train: 0.97, Test: 0.94
 
 	# Save model for future use
     save(model, 'review_scorer.pkl')
