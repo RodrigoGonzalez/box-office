@@ -53,12 +53,27 @@ def process_lists(lst):
     lsts.sort()
     return lsts
 
-def ():
+def save_quotes(ticks):
+    """
+    INPUT: list
+        - Takes the ticker symbols of the media properties and saves time series s
+    Returns a data frame
+    """
+    start_date, end_date = '20060101', '20160601'
+
+    data_dir = '../data/stock_data/'
+
+    for symbol in ticks:
+        hist_data = yahoo_quotes.get_historical_prices(symbol, start_date, end_date)
+        stck_data = np.asarray(hist_data)
+        df = pd.DataFrame(stck_data[1], columns=stck_data[0])
+        df.iloc[:,1:] = df.iloc[:,1:].astype(float)
+        path = "{}{}.csv".format(data_dir, symbol)
+        df.to_csv(path, index=False)
 
     return
 
 if __name__ == '__main__':
-    main()
 
     # Get distributor names
     file_name = '../html_postgres/movie_revs.csv'
@@ -67,5 +82,8 @@ if __name__ == '__main__':
     # Get stock quotes for time series analysis
     media_properties = dist_quotes()
     media_properties.remove('private')
+    media_properties.remove('SGX')
+    media_properties.remove('HHSE')
 
-    #
+    # Save historical stock market data
+    save_quotes(media_properties)

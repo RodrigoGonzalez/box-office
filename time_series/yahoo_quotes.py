@@ -23,7 +23,7 @@ def get_all(symbol):
 
     Returns a dictionary.
     """
-    values = __request(symbol, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7').split(',')
+    values = __request(symbol, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7n').split(',')
     data = {}
     data['price'] = values[0]
     data['change'] = values[1]
@@ -45,6 +45,7 @@ def get_all(symbol):
     data['price_sales_ratio'] = values[17]
     data['price_book_ratio'] = values[18]
     data['short_ratio'] = values[19]
+    data['name'] = values[20]
     return data
 
 
