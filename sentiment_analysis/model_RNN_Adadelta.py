@@ -85,6 +85,7 @@ if __name__ == "__main__":
 	# Train/save tokenizer
 	tokenizer = tokenize(X_train)
 	X_tokens = tokenizer.transform(X_train)
+
     with open('review_tokenizer.pkl','wb') as fileObject:
         pickle.dump(tokenizer, fileObject)
 
