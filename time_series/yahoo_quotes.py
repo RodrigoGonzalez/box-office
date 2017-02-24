@@ -147,4 +147,4 @@ def get_historical_prices(symbol, start_date, end_date):
     days = urllib.urlopen(url).readlines()
     data = [day[:-2].split(',') for day in days][1:]
     fields = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'AdjClose']
-    return data
+    return fields, data
