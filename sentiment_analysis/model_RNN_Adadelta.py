@@ -11,8 +11,7 @@ from passage.utils import save, load
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import Binarizer
-from sklearn.metrics import (roc_auc_score, precision_score, recall_score,
-                             f1_score)
+from sklearn.metrics import (roc_auc_score, precision_score, recall_score, f1_score)
 
 def load_reviews(file_name):
 	"""
@@ -71,6 +70,20 @@ def train_RNN(tokenizer, tokens, labels):
 
 	return model
 
+def score():
+    """
+    INPUT: None
+    Returns different scores
+    """
+    scorers = [roc_auc_score, recall_score, f1_score, precision_score]
+    for score in scorers:
+        tr_score = score(y_train, y_pred_tr)
+        t_score = score(y_test, y_pred_tst)
+        print "Scoring method: {0}".format(score.func_name.title())
+        print "Train: {0:.2f}, Test: {1:.2f}".format(tr_score, t_score)
+        # '{0:.{1}f}'.format(f, 2)
+
+
 if __name__ == "__main__":
 
 	data_path = '../data/reviews_sentiment/'
@@ -85,10 +98,6 @@ if __name__ == "__main__":
 	# Train/save tokenizer
 	tokenizer = tokenize(X_train)
 	X_tokens = tokenizer.transform(X_train)
-
-    with open('review_tokenizer.pkl','wb') as fileObject:
-        pickle.dump(tokenizer, fileObject)
-
 
 	# Train Recurrent Neural Network
 	model = train_RNN(tokenizer, X_tokens, y_train)
@@ -106,15 +115,14 @@ if __name__ == "__main__":
 	yhat_tr_b = binarizer.transform(yhat_train).astype(int)
 	yhat_tst_b = binarizer.transform(yhat_test).astype(int)
 
-	# Scorers to consider
-	scorers = [roc_auc_score, recall_score, f1_score, precision_score]
+    # # Save model for future use
+    # save(model, 'review_scorer1.pkl')
+    # # model = load('review_scorer.pkl')
+    # with open('review_tokenizer1.pkl','wb') as fileObject:
+    #     pickle.dump(tokenizer, fileObject)
 
-	for score in scorers:
-		tr_score = score(y_train, y_pred_tr)
-		t_score = score(y_test, y_pred_tst)
-		print "Scoring method: {0}".format(score.func_name.title())
-		print "Train: {0:.2f}, Test: {1:.2f}".format(tr_score, t_score)
-		# '{0:.{1}f}'.format(f, 2)
+	# Scorers to consider
+    # score()
 
 	# Scoring method: Roc_Auc_Score
 	# Train: 0.99, Test: 0.97
@@ -124,7 +132,3 @@ if __name__ == "__main__":
 	# Train: 0.95, Test: 0.92
 	# Scoring method: Precision_Score
 	# Train: 0.97, Test: 0.94
-
-	# Save model for future use
-    save(model, 'review_scorer.pkl')
-    # model = load('review_scorer.pkl')

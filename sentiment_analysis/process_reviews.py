@@ -5,6 +5,7 @@ from lxml import html
 import cPickle as pickle
 
 from passage.utils import save, load
+from model_RNN_Adadelta import load_reviews
 
 def load_dataframe():
     """
@@ -18,20 +19,52 @@ def load_dataframe():
 def word_set(string):
     """
     INPUT: string
-        -
-    Returns
+        - stripped and clean title2
+    Returns cleaned movie_key
     """
     return set(re.sub('\W', ' ', string).lower().split())
     # for flagging
 
-def clean(texts):
-	"""
-	INPUT: list of strings (html)
-	Returns text content (and the text in any children), stripped, lowercase from a single document.
-	"""
-	return [html.fromstring(text).text_content().lower().strip() for text in texts]
+def generate_word_set():
+    """
+    INPUT: list of strings
+        - Contains the reviews to be cleaned
+    Returns a set including all of the words present in the training data
+    """
+    data_path = '../data/reviews_sentiment/'
+    file_name = data_path + 'labeledTrainData.tsv'
 
-def process_review_data(df, movie_key):
+    # Load Data
+    X, y = load_reviews(file_name)
+
+    included_words = set()
+
+    for review in X:
+        included_words.update(set(review.split(" ")))
+
+    return included_words
+
+def clean(texts, ws):
+    """
+    INPUT: list of strings (html)
+    Returns text content (and the text in any children), stripped, lowercase from a single document.
+    """
+    revs = [html.fromstring(text).text_content().lower().strip() for text in texts]
+
+    cln_reviews = []
+
+    for i, r in enumerate(revs):
+        words = r.split(" ")
+        include = []
+        for word in words:
+            if word in ws and word:
+                include.append(word)
+        if not include:
+            include.append('empty')
+        cln_reviews.append(" ".join(include))
+    return cln_reviews
+
+def process_review_data(df, movie_key, ws):
     """
     INPUT: Pandas DataFrame
         - A data frame containing the critic reviews to be processed
@@ -40,18 +73,25 @@ def process_review_data(df, movie_key):
     m_key = re.sub('.csv', '', movie_key)
 
     df_review = df[df['status_code'] == 200].copy()
-    try:
-        X = clean(df_review['review'].values)
-        X.append(" ".join(X))
+    print df_review.shape
 
-    except (RuntimeError, TypeError, NameError):
-        print m_key
+    if df_review.shape[0] == 0:
+        print movie_key
+        return '0', m_key, m_key
+    else:
+        try:
+            X = clean(df_review['review'].values, ws)
+            j_reviews = [" ".join(X)]
+            X.append(j_reviews)
 
-    Id = df_review['id'].tolist()
-    Id.append('{}_tot'.format(m_key))
-    movie_keys = [m_key for x in xrange(len(Id))]
+        except (RuntimeError, TypeError, NameError):
+            print m_key
 
-    return X, Id, movie_keys
+        Id = df_review['id'].tolist()
+        Id.append('{}_tot'.format(m_key))
+        movie_keys = [m_key for x in xrange(len(Id))]
+
+        return X, Id, movie_keys
 
 def movie_reviews(path):
     """
@@ -59,19 +99,29 @@ def movie_reviews(path):
         - The path of folder containing the movie reviews for each movie
     Returns a dataframe with all of the processed movie reviews
     """
-    reviews = filter(lambda x: 'csv' in x, os.listdir(path))
+    reviews_loc = filter(lambda x: 'csv' in x, os.listdir(path))
 
     X, IDs, keys = [], [], []
 
+    ws = generate_word_set()
+
     print "\nBegin loading moview reviews"
 
-    for review in reviews:
+    for j, review in enumerate(reviews_loc):
         df = pd.read_csv(path+review)
         df.dropna(axis=0, inplace=True)
-        x, i, k = process_review_data(df, review)
-        X.extend(x)
-        IDs.extend(i)
-        keys.extend(k)
+        x, i, k = process_review_data(df, review, ws)
+
+        op = "append" if len(x) == 1 else "extend"
+
+        eval("X.{0}(x)".format(op))
+        eval("IDs.{0}(i)".format(op))
+        eval("keys.{0}(k)".format(op))
+
+        if len(X) != len(keys):
+            print len(X), len(keys)
+            print j, review
+            raise ValueError('Arrays no longer match')
 
     df = pd.DataFrame({ 'reviews'  : X,
                         'review_id': IDs,
@@ -105,7 +155,8 @@ if __name__ == '__main__':
 
     # Load reviews
     df = movie_reviews(path)
-    X  = df.pop('reviews').values
+    df_  = df[df.reviews != '0'].copy()
+    X  = df_.pop('reviews').values
 
     # Load models and text tokenizer
     model, tokenizer = sentiment_scorer()
@@ -115,7 +166,7 @@ if __name__ == '__main__':
     # Tokenize reviews
     X_tokens = tokenizer.transform(X)
 
-    print "\n Making sentiment predictions"
+    print "\nMaking sentiment predictions"
     # Make sentiment predictions
     y_pred = model.predict(X_tokens).flatten()
     df['sentiment'] = y_pred.reshape(-1, 1)
