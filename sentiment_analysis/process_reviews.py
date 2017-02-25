@@ -80,9 +80,11 @@ def process_review_data(df, movie_key, ws):
         return '0', m_key, m_key
     else:
         try:
-            X = clean(df_review['review'].values, ws)
-            j_reviews = [" ".join(X)]
-            X.append(j_reviews)
+            X_ = clean(df_review['review'].values, ws)
+            j_reviews = [" ".join(X_)]
+            if type(j_reviews) == list:
+                j_reviews = j_reviews[0]
+            X_.append(j_reviews)
 
         except (RuntimeError, TypeError, NameError):
             print m_key
@@ -91,7 +93,7 @@ def process_review_data(df, movie_key, ws):
         Id.append('{}_tot'.format(m_key))
         movie_keys = [m_key for x in xrange(len(Id))]
 
-        return X, Id, movie_keys
+        return X_, Id, movie_keys
 
 def movie_reviews(path):
     """
@@ -155,8 +157,8 @@ if __name__ == '__main__':
 
     # Load reviews
     df = movie_reviews(path)
-    df_  = df[df.reviews != '0'].copy()
-    X  = df_.pop('reviews').values
+    df  = df[df.reviews != '0'].copy()
+    X  = df.pop('reviews').values
 
     # Load models and text tokenizer
     model, tokenizer = sentiment_scorer()
@@ -172,7 +174,7 @@ if __name__ == '__main__':
     df['sentiment'] = y_pred.reshape(-1, 1)
 
     # Save to csv file sentiment predictions
-    file_save = '../data/reviews_sentiment/sentiment.csv'
+    file_save = '../data/reviews_sentiment/sentiment1.csv'
     df.to_csv(file_save, header=True, index=False)
 
 # movie_revs movie revenues 0 - 1957
