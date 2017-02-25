@@ -66,7 +66,7 @@ def train_RNN(tokenizer, tokens, labels):
 
 	print "Begin fitting RNN"
 
-	model.fit(tokens, labels, n_epochs=10, path=path_snapshots)
+	model.fit(tokens, labels, n_epochs=12)
 
 	return model
 
@@ -114,6 +114,11 @@ if __name__ == "__main__":
 	binarizer = Binarizer(threshold=0.5).fit(yhat_train)
 	yhat_tr_b = binarizer.transform(yhat_train).astype(int)
 	yhat_tst_b = binarizer.transform(yhat_test).astype(int)
+
+    save(model, review_score_full.pkl)
+
+    with open('review_tokenizer_full.pkl', 'wb') as fileObject:
+        pickle.dump(tokenizer, fileObject)
 
     # # Save model for future use
     # save(model, 'review_scorer1.pkl')
