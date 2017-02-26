@@ -93,7 +93,7 @@ if __name__ == "__main__":
 	X, y = load_reviews(file_name)
 
 	# Split to training and testing data
-	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=74)
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.0, random_state=74)
 
 	# Train/save tokenizer
 	tokenizer = tokenize(X_train)
