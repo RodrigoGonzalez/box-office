@@ -28,7 +28,7 @@ def word_set(string):
     return set(re.sub('\W', ' ', string).lower().split())
     # for flagging
 
-columns = ['production_budget', 'runtime', 'month', 'season', 'year', 'total_revenues']
+columns = ['production_budget', 'runtime', 'month', 'season', 'total_revenues']
 
 
 df_ = load_dataframe()
@@ -70,6 +70,37 @@ plt.xlabel('MPAA Rating')
 plt.ylabel('$ USD B')
 plt.show(False)
 
+# Draw a plot of two variables with bivariate and univariate graphs.
+######################################################
+
+g = sns.jointplot("production_budget", "total_revenues", data=df_, kind="reg")
+g.fig.suptitle('Production Budget vs Total Revenues')
+sns.despine(offset=10, trim=True)
+plt.xlabel('Production Budget (USD B)')
+plt.ylabel('Total Revenues (USD B)')
+plt.show(False)
+
+
+g = sns.jointplot("prod_bud", "tot_revs", data=df_, kind="reg")
+g.fig.suptitle('Natural log Transforms of Production Budget vs Total Revenues')
+sns.despine(offset=10, trim=True)
+plt.xlabel('ln(Production Budget)')
+plt.ylabel('ln(Total Revenues)')
+plt.show(False)
+
+g = sns.jointplot("production_budget", "tot_revs", data=df_, kind="reg")
+g.fig.suptitle('Production Budget vs Total Revenues')
+sns.despine(offset=10, trim=True)
+plt.xlabel('Production Budget (USD B)')
+plt.ylabel('Total Revenues (USD B)')
+plt.show(False)
+
+g = sns.jointplot("prod_bud", "total_revenues", data=df_, kind="reg")
+g.fig.suptitle('Natural log Transforms of Production Budget vs Total Revenues')
+sns.despine(offset=10, trim=True)
+plt.xlabel('ln(Production Budget)')
+plt.ylabel('ln(Total Revenues)')
+plt.show(False)
 
 
 

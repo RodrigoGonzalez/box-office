@@ -42,6 +42,9 @@ def stream_find_movie(conn):
     return stream
 
 def execute_find_movie(title, year):
+	"""
+	Execute queries for getting information on each movie title
+	"""
 	# execute Query
 	records1 = records2 = []
 	conn.rollback()
