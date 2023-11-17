@@ -7,10 +7,7 @@ from timeit import Timer
 def check_prime(n):
     if n % 2 == 0:
         return False
-    for i in xrange(3, int(math.sqrt(n)) + 1, 2):
-        if n % i == 0:
-            return False
-    return True
+    return all(n % i != 0 for i in xrange(3, int(math.sqrt(n)) + 1, 2))
 
 
 def primes_sequential():

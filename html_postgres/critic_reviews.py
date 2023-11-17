@@ -23,8 +23,7 @@ def word_set(string):
     # for flagging
 
 def include_review(title, main_text):
-    x = np.sum([1 for word in title if word in main_text])
-    return x
+    return np.sum([1 for word in title if word in main_text])
 
 def extract_text(link):
     try:
@@ -81,8 +80,7 @@ def list_of_links(file):
     pool = multiprocessing.Pool(cpus)  # for each core
     output = pool.map(extract_text, links)
     df_reviews = pd.DataFrame(output, columns=['data', 'stat_codes'])
-    review_data = zip(df_reviews['data'], links, df_reviews['stat_codes'])
-    return review_data
+    return zip(df_reviews['data'], links, df_reviews['stat_codes'])
 
 def comparison(string):
     return re.sub('csv', 'txt', string)

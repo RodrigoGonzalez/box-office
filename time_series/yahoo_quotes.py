@@ -14,7 +14,7 @@ sample usage:
 
 
 def __request(symbol, stat):
-    url = 'http://finance.yahoo.com/d/quotes.csv?s={}&f={}'.format(symbol, stat)
+    url = f'http://finance.yahoo.com/d/quotes.csv?s={symbol}&f={stat}'
     return urllib.urlopen(url).read().strip().strip('"')
 
 def get_all(symbol):
@@ -24,29 +24,29 @@ def get_all(symbol):
     Returns a dictionary.
     """
     values = __request(symbol, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7n').split(',')
-    data = {}
-    data['price'] = values[0]
-    data['change'] = values[1]
-    data['volume'] = values[2]
-    data['avg_daily_volume'] = values[3]
-    data['stock_exchange'] = values[4]
-    data['market_cap'] = values[5]
-    data['book_value'] = values[6]
-    data['ebitda'] = values[7]
-    data['dividend_per_share'] = values[8]
-    data['dividend_yield'] = values[9]
-    data['earnings_per_share'] = values[10]
-    data['52_week_high'] = values[11]
-    data['52_week_low'] = values[12]
-    data['50day_moving_avg'] = values[13]
-    data['200day_moving_avg'] = values[14]
-    data['price_earnings_ratio'] = values[15]
-    data['price_earnings_growth_ratio'] = values[16]
-    data['price_sales_ratio'] = values[17]
-    data['price_book_ratio'] = values[18]
-    data['short_ratio'] = values[19]
-    data['name'] = values[20]
-    return data
+    return {
+        'price': values[0],
+        'change': values[1],
+        'volume': values[2],
+        'avg_daily_volume': values[3],
+        'stock_exchange': values[4],
+        'market_cap': values[5],
+        'book_value': values[6],
+        'ebitda': values[7],
+        'dividend_per_share': values[8],
+        'dividend_yield': values[9],
+        'earnings_per_share': values[10],
+        '52_week_high': values[11],
+        '52_week_low': values[12],
+        '50day_moving_avg': values[13],
+        '200day_moving_avg': values[14],
+        'price_earnings_ratio': values[15],
+        'price_earnings_growth_ratio': values[16],
+        'price_sales_ratio': values[17],
+        'price_book_ratio': values[18],
+        'short_ratio': values[19],
+        'name': values[20],
+    }
 
 
 def get_price(symbol):
@@ -136,15 +136,21 @@ def get_historical_prices(symbol, start_date, end_date):
 
     Returns a nested list.
     """
-    url = 'http://ichart.yahoo.com/table.csv?s={0}&'.format(symbol) + \
-          'd={0}&'.format(str(int(end_date[4:6]) - 1)) + \
-          'e={0}&'.format(str(int(end_date[6:8]))) + \
-          'f={0}&'.format(str(int(end_date[0:4]))) + \
-          'g=d&' + \
-          'a={0}&'.format(str(int(start_date[4:6]) - 1)) + \
-          'b={0}&'.format(str(int(start_date[6:8]))) + \
-          'c={0}&'.format(str(int(start_date[0:4]))) + \
-          'ignore=.csv'
+    url = (
+        (
+            (
+                'http://ichart.yahoo.com/table.csv?s={0}&'.format(symbol)
+                + 'd={0}&'.format(str(int(end_date[4:6]) - 1))
+                + 'e={0}&'.format(str(int(end_date[6:8])))
+                + 'f={0}&'.format(str(int(end_date[:4])))
+            )
+            + 'g=d&'
+        )
+        + 'a={0}&'.format(str(int(start_date[4:6]) - 1))
+        + 'b={0}&'.format(str(int(start_date[6:8])))
+        + 'c={0}&'.format(str(int(start_date[:4])))
+        + 'ignore=.csv'
+    )
     days = urllib.urlopen(url).readlines()
     data = [day[:-2].split(',') for day in days][1:]
     fields = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'AdjClose']

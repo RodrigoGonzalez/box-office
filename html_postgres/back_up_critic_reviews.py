@@ -25,8 +25,7 @@ def word_set(string):
     # for flagging
 
 def include_review(title, main_text):
-    x = np.sum([1 for word in title if word in main_text])
-    return x
+    return np.sum([1 for word in title if word in main_text])
 
 def extract_text(link):
     try:
@@ -76,10 +75,7 @@ def extract_text(link):
 def populate(link):
     r = requests.get(link)
 
-    if r.status_code == requests.codes.ok:
-        return extract_text(r)
-    else:
-        return None
+    return extract_text(r) if r.status_code == requests.codes.ok else None
 
 def list_of_links(file):
     data = []
@@ -92,8 +88,7 @@ def list_of_links(file):
         perfect, status_code = extract_text(link)
         data.append(perfect)
         stat_codes.append(status_code)
-    review_data = zip(data, links, stat_codes)
-    return review_data
+    return zip(data, links, stat_codes)
 
 def comparison(string):
     return re.sub('csv', 'txt', string)

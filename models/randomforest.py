@@ -39,8 +39,7 @@ def market_date(string, ticker):
     delta0 = (date - delta).strftime('%Y-%m-%d')
     delta1 = (date + delta).strftime('%Y-%m-%d')
     historical_close = ticker.get_historical(delta0, delta1)
-    close = np.mean([float(x['Close']) for x in historical_close])
-    return close
+    return np.mean([float(x['Close']) for x in historical_close])
 
 def release_info(release_dates):
     """

@@ -90,11 +90,7 @@ def load_df(d, rev_df):
     week1_rev = rev_df[:7].sum().get_values()[0]
     week2_rev = rev_df[7:14].sum().get_values()[0]
 
-    if week1_rev > week2_rev:
-        sleeper = 0
-    else:
-        sleeper = 1
-
+    sleeper = 0 if week1_rev > week2_rev else 1
     columns = ['year', 'month', 'day', 'season', 'sleeper']
     column_vals = [ts.year, ts.month, ts.day, season[ts.month], sleeper]
     date_data = pd.DataFrame(dict(zip(columns, column_vals)), index=[1,])
@@ -105,7 +101,6 @@ def load_df(d, rev_df):
 def populate_dataframe(file, df):
     d, rev_df = get_revenue_table(file)
     if len(d) > 1:
-        pass
         df2 = load_df(d, rev_df)
         df = df.append(df2, ignore_index=True)
     else:
@@ -122,7 +117,7 @@ if __name__ == '__main__':
     path = '../../FinalProject/boxoffice_results'
 
     for filename in os.listdir(path):
-        file = path + "/" + filename
+        file = f"{path}/" + filename
         df = populate_dataframe(file, df)
 
     df.to_csv('movie_revs.csv')

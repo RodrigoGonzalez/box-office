@@ -27,7 +27,7 @@ path_to_chromedriver = '/usr/local/bin/chromedriver'
 chrome_options = webdriver.ChromeOptions()
 prefs = {"profile.managed_default_content_settings.images":2}
 chrome_options.add_experimental_option("prefs",prefs)
-chrome_options.add_argument("user-agent={}".format(UserAgent().random))
+chrome_options.add_argument(f"user-agent={UserAgent().random}")
 
 
 # change path as needed to where web driver lives

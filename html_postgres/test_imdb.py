@@ -2,12 +2,8 @@ import psycopg2 as pg
 import sys
 from time import time
 
-if sys.argv[1:]:
-    dbname = sys.argv[1]
-else:
-    dbname = 'movies'
-
-db = pg.connect("dbname='%s'" % dbname)
+dbname = sys.argv[1] if sys.argv[1:] else 'movies'
+db = pg.connect(f"dbname='{dbname}'")
 
 def list_tables():
     c = db.cursor()

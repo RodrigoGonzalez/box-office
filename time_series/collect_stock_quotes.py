@@ -31,9 +31,7 @@ def dist_quotes():
     df = pd.read_csv('distributors_ticker.txt', header=None)
 
     tickers = df[1].tolist()
-    mp_quotes = process_lists(tickers)
-
-    return mp_quotes
+    return process_lists(tickers)
 
 def process_lists(lst):
     """
@@ -49,8 +47,7 @@ def process_lists(lst):
 
     lsts.difference_update(l_sep)
     lsts.update(l_add)
-    lsts = list(lsts)
-    lsts.sort()
+    lsts = sorted(lsts)
     return lsts
 
 def save_quotes(ticks):
@@ -68,7 +65,7 @@ def save_quotes(ticks):
         stck_data = np.asarray(hist_data)
         df = pd.DataFrame(stck_data[1], columns=stck_data[0])
         df.iloc[:,1:] = df.iloc[:,1:].astype(float)
-        path = "{}{}.csv".format(data_dir, symbol)
+        path = f"{data_dir}{symbol}.csv"
         df.to_csv(path, index=False)
 
     return

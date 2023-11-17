@@ -20,26 +20,25 @@ def connect():
 	return conn, cursor
 
 def stream_tuples(conn, sql, args):
-    cursor = conn.cursor()
-    cursor.execute(sql, args)
+	cursor = conn.cursor()
+	cursor.execute(sql, args)
 
-    row = cursor.fetchone()
-    while row:
-        yield row
-        row = cursor.fetchone()
-
-    cursor.close()
+	while row := cursor.fetchone():
+		yield row
+	cursor.close()
 
 def stream_find_movie(conn):
 
-    stream = stream_tuples(conn, """
+	return stream_tuples(
+		conn,
+		"""
             SELECT id, title, production_year, md5sum
             FROM title
             WHERE title = %s
 			AND production_year = %s
-        """, [TITLE, PRODUCTION_YEAR])
-
-    return stream
+        """,
+		[TITLE, PRODUCTION_YEAR],
+	)
 
 def execute_find_movie(title, year):
 	"""
@@ -87,8 +86,7 @@ def execute_find_movie(title, year):
 	return records
 
 def prepare_title(title):
-	new_title = None
-	return new_title
+	return None
 
 if __name__ == "__main__":
 	conn, cursor = connect()

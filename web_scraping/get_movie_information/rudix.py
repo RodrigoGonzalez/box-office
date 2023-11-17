@@ -50,33 +50,27 @@ def version_compare(v1, v2):
     v1, r1 = ver_rel_re.match(v1).groups()
     v2, r2 = ver_rel_re.match(v2).groups()
     v_cmp = cmp(LooseVersion(v1), LooseVersion(v2))
-    # if they are in the same version, then compare the revision
-    if v_cmp == 0:
-        if r1 is None:
-            r1 = 0
-        if r2 is None:
-            r2 = 0
-        return cmp(int(r1), int(r2))
-    else:
+    if v_cmp != 0:
         return v_cmp
+    if r1 is None:
+        r1 = 0
+    if r2 is None:
+        r2 = 0
+    return cmp(int(r1), int(r2))
 
 
 def normalize(name):
     'Transform package name in package-id.'
-    if name.startswith(Vendor) is False:
-        package_id = '%s.%s' % (Vendor, name)
-    else:
-        package_id = name
-    return package_id
+    return f'{Vendor}.{name}' if name.startswith(Vendor) is False else name
 
 
 def denormalize(package_id):
     'Transform package-id in package name.'
-    if package_id.startswith(Vendor):
-        name = package_id[len(Vendor) + 1:]
-    else:
-        name = package_id
-    return name
+    return (
+        package_id[len(Vendor) + 1 :]
+        if package_id.startswith(Vendor)
+        else package_id
+    )
 
 
 def administrator(func):
@@ -131,11 +125,10 @@ class Package(object):
         self._dirs = None
 
     def __str__(self):
-        return "Package '%s' on volume '%s'" % (self.package_id,
-                                                self.volume)
+        return f"Package '{self.package_id}' on volume '{self.volume}'"
 
     def __repr__(self):
-        return "Package('%s')" % (self.package_id)
+        return f"Package('{self.package_id}')"
 
     @property
     def installed(self):
@@ -159,7 +152,7 @@ class Package(object):
     def package(self):
         if not self._package:
             self.get_info()
-        self._package = '%s-%s.pkg' % (self.name, self.version)
+        self._package = f'{self.name}-{self.version}.pkg'
         return self._package
 
     @property
@@ -186,8 +179,7 @@ class Package(object):
         cmd = ['pkgutil', '--volume', self.volume,
                '--files', self.package_id]
         out = communicate(cmd)
-        content = [os.path.join(self.volume, line.strip()) for line in out]
-        return content
+        return [os.path.join(self.volume, line.strip()) for line in out]
 
     def uninstall(self, verbose=False):
         FORBIDDEN = [
@@ -266,10 +258,10 @@ class RemotePackage(object):
         self._revision = None
 
     def __str__(self):
-        return "Package '%s' on '%s'" % (self.package, self.url)
+        return f"Package '{self.package}' on '{self.url}'"
 
     def __repr__(self):
-        return "RemotePackage('%s')" % self.package
+        return f"RemotePackage('{self.package}')"
 
     @property
     def package_id(self):
@@ -287,7 +279,7 @@ class RemotePackage(object):
     def version(self):
         if self._version is None:
             self.split()
-        return '%s-%s' % (self._version, self._revision)
+        return f'{self._version}-{self._revision}'
 
     def split(self):
         pat = re.compile(r'^(.+)-([^-]+)-(\d+)\.pkg$')
@@ -328,15 +320,14 @@ class Repository(object):
                                                             self.volume)
 
     def __repr__(self):
-        return "Repository('%s')" % self.volume
+        return f"Repository('{self.volume}')"
 
     def sync(self):
         self.get_packages()
         return True
 
     def get_packages(self):
-        cmd = ['pkgutil', '--volume', self.volume,
-               '--pkgs=' + self.vendor + '.*']
+        cmd = ['pkgutil', '--volume', self.volume, f'--pkgs={self.vendor}.*']
         out = communicate(cmd)
         self.packages = [line.strip() for line in out]
         return self.packages
@@ -387,10 +378,10 @@ class RemoteRepository(object):
                                                     self.url)
 
     def __repr__(self):
-        return "RemoteRepository('%s')" % self.url
+        return f"RemoteRepository('{self.url}')"
 
     def _retrieve_manifest(self):
-        url = self.url + '/00MANIFEST.txt'
+        url = f'{self.url}/00MANIFEST.txt'
         cmd = ['curl', '-s', url]
         content = communicate(cmd)
         if not content:
@@ -401,7 +392,7 @@ class RemoteRepository(object):
         return True
 
     def _retrieve_aliases(self):
-        url = self.url + '/00ALIASES.txt'
+        url = f'{self.url}/00ALIASES.txt'
         cmd = ['curl', '-s', url]
         content = communicate(cmd)
         if not content:
@@ -420,10 +411,7 @@ class RemoteRepository(object):
         return True
 
     def match_package(self, pkg):
-        if pkg in self.packages:
-            return RemotePackage(pkg)
-        else:
-            return None
+        return RemotePackage(pkg) if pkg in self.packages else None
 
     def get_versions(self, name):
         versions = []
@@ -432,11 +420,11 @@ class RemoteRepository(object):
             if name == p.name:
                 versions.append(p)
         if versions:
-            versions = sorted(list(set(versions)),
-                              reverse=True,
-                              cmp=lambda x, y: version_compare(x.version,
-                                                               y.version))
-            return versions
+            return sorted(
+                list(set(versions)),
+                reverse=True,
+                cmp=lambda x, y: version_compare(x.version, y.version),
+            )
         else:
             return []
 
@@ -727,7 +715,7 @@ def main(args=None):
     if args is None:
         args = sys.argv[1:]
     usage = 'Usage: %prog command [options] [arguments]'
-    version = 'Rudix Package Manager (%prog) version ' + __version__ + '\n'
+    version = f'Rudix Package Manager (%prog) version {__version__}' + '\n'
     version += __copyright__
     parser = optparse.OptionParser(usage=usage,
                                    version=version)
@@ -785,7 +773,7 @@ def main(args=None):
     if args:
         command = args[0]
         if command.startswith('-') is False:
-            args[0] = '--' + command
+            args[0] = f'--{command}'
     (options, args) = parser.parse_args(args)
     return options.command(options, args)
 

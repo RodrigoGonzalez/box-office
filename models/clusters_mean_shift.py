@@ -36,23 +36,16 @@ def cluster(df, role_type, n):
 def info_transform(data):
 	info_type_id = int(data[0])
 	string = data[1].replace("\\", "")
-	info_type = int(info_type_id)
+	info_type = info_type_id
 
 	if info_type == 21:
 		nums = map(int, re.findall('\d+', string))
-		if len(nums) == 1:
-			return nums
-		else:
-			year_list = [int(x) for x in nums if len(str(x)) == 4]
-			return year_list
-
+		return nums if len(nums) == 1 else [int(x) for x in nums if len(str(x)) == 4]
 	elif info_type == 27:
 		salary_info = string.decode('utf-8').encode('ascii', 'replace')
 		last_string_1 = salary_info.split('::')[-1]
 		power = last_string_1.count(',000')
-		if power > 2:
-			power = 2
-
+		power = min(power, 2)
 		if '?' in last_string_1:
 			last_string_2 = re.sub("[,]", "", last_string_1.split('?')[-1])
 			conversion_factor = 1.6
@@ -83,10 +76,7 @@ def info_transform(data):
 
 		redic = len(str(salary).split(".")[0])
 
-		if redic > 8:
-			return 0.0
-		else:
-			return salary
+		return 0.0 if redic > 8 else salary
 
 # Plot Figure
 #
@@ -106,7 +96,7 @@ def info_transform(data):
 
 if __name__ == "__main__":
 	n = int(sys.argv[1])
-	assert n in [1, 3, 4, 8]
+	assert n in {1, 3, 4, 8}
 
 	df_basedata = pd.read_csv('../html_postgres/movie_revs.csv')
 	df_basedata['movie_revs_id'] = df_basedata['Unnamed: 0']
@@ -198,6 +188,10 @@ if __name__ == "__main__":
 	data_df = data.groupby('name_id')['total_lifetime_earnings', 'year', 'gender', 'total_box_office_revenues'].mean()
 	data_df['name_id'] = data_df.index
 
-	data_df.to_csv('../html_postgres/person_clusters_{}_{}.csv'.format(role_type, n), mode = 'w', index=False)
+	data_df.to_csv(
+		f'../html_postgres/person_clusters_{role_type}_{n}.csv',
+		mode='w',
+		index=False,
+	)
 
 	cluster(data_df, n)

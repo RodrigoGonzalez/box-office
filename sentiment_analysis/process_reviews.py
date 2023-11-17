@@ -32,7 +32,7 @@ def generate_word_set():
     Returns a set including all of the words present in the training data
     """
     data_path = '../data/reviews_sentiment/'
-    file_name = data_path + 'labeledTrainData.tsv'
+    file_name = f'{data_path}labeledTrainData.tsv'
 
     # Load Data
     X, y = load_reviews(file_name)
@@ -53,12 +53,9 @@ def clean(texts, ws):
 
     cln_reviews = []
 
-    for i, r in enumerate(revs):
+    for r in revs:
         words = r.split(" ")
-        include = []
-        for word in words:
-            if word in ws and word:
-                include.append(word)
+        include = [word for word in words if word in ws and word]
         if not include:
             include.append('empty')
         cln_reviews.append(" ".join(include))
